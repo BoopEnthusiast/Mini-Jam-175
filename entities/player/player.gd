@@ -9,9 +9,6 @@ const SPEED = 300.0
 const ACCEL = 70.0
 const JUMP_VELOCITY = -400.0
 
-@export var direction: float
-@export var velocity_copy: Vector2
-
 var was_on_floor := false
 var has_double_jumped := false
 var has_pressed_jump := false
@@ -29,9 +26,8 @@ func _enter_tree() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Mimic velocity to be seen by MultiplayerSyncronizer and copied to the other player
-	if is_multiplayer_authority():
-		velocity_copy = velocity
+	if not is_multiplayer_authority():
+		return
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -42,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		has_double_jumped = false
 	
 	# Handle jump. Only set if is the authority
-	if Input.is_action_just_pressed("jump_spawn") and is_multiplayer_authority():
+	if Input.is_action_just_pressed("jump_spawn"):
 		if is_on_floor() or not coyote_time.is_stopped():
 			velocity.y = JUMP_VELOCITY
 		elif not has_double_jumped:
@@ -54,8 +50,7 @@ func _physics_process(delta: float) -> void:
 			jump_buffer.start()
 	
 	# Get the input direction and handle the movement/deceleration. Only set if is the authority
-	if is_multiplayer_authority():
-		direction = Input.get_axis("left", "right")
+	var direction = Input.get_axis("left", "right")
 	
 	if direction:
 		if direction == -1:
