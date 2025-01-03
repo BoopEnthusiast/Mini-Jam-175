@@ -41,4 +41,8 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
     has_hit_player = true
     player.health -= 1
     print("Block hit player")
-    # TODO destroy block?
+    # Destroy after short delay for player to see the hit.
+    get_tree().create_timer(0.05).timeout.connect(queue_free)
+
+    if Singleton.camera != null:
+        Singleton.camera.add_trauma(1.0)
