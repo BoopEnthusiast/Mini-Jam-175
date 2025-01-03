@@ -167,6 +167,7 @@ fill_to = Vector2(0.334862, 0.302752)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
+floor_max_angle = 1.22173
 script = ExtResource("1_85tuv")
 
 [node name="Collider" type="CollisionShape2D" parent="."]

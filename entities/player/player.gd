@@ -106,7 +106,7 @@ func setStateGrounded() -> void:
 			setStateAirborne()
 
 func setStateWallslide() -> void:
-	if get_wall_normal().x == 1:
+	if get_wall_normal().x > 0:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
