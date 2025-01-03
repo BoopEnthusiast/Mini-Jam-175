@@ -2,13 +2,17 @@ class_name Player
 extends CharacterBody2D
 
 var checkState = func():
+	faceDirection()
+	
 	if velocity.y < 20:
 		sprite.play("rise")
 	else:
 		sprite.play("fall")
 	
-	if is_on_floor:
+	if is_on_floor():
 		setStateGrounded()
+	elif is_on_wall_only():
+		setStateWallslide()
 
 const SPEED = 300.0
 const ACCEL = 70.0
@@ -47,6 +51,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump_spawn"):
 		if is_on_floor() or not coyote_time.is_stopped():
 			velocity.y = JUMP_VELOCITY
+		elif is_on_wall_only:
+			velocity.y = JUMP_VELOCITY
+			velocity.x = get_wall_normal().x * SPEED
 		elif not has_double_jumped:
 			velocity.y = JUMP_VELOCITY
 			has_double_jumped = true
@@ -71,7 +78,7 @@ func _physics_process(delta: float) -> void:
 
 func setStateAirborne() -> void:
 	checkState = func():
-		setFacing()
+		faceDirection()
 		
 		if velocity.y < 20:
 			sprite.play("rise")
@@ -85,7 +92,7 @@ func setStateAirborne() -> void:
 
 func setStateGrounded() -> void:
 	checkState = func():
-		setFacing()
+		faceDirection()
 		
 		if direction:
 			sprite.play("walk")
@@ -96,10 +103,14 @@ func setStateGrounded() -> void:
 			setStateAirborne()
 
 func setStateWallslide() -> void:
+	has_double_jumped = false
+	
 	if get_wall_normal().x == 1:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
+	
+	sprite.play("wall")
 	
 	checkState = func():
 		if is_on_floor():
@@ -107,7 +118,7 @@ func setStateWallslide() -> void:
 		elif not is_on_wall():
 			setStateAirborne()
 
-func setFacing() -> void:
+func faceDirection() -> void:
 	if direction == -1:
 		sprite.flip_h = true
 	else:
