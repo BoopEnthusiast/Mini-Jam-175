@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=7 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
 [ext_resource type="Texture2D" uid="uid://dkllnwvkuvugn" path="res://entities/player/spr_player_idle.png" id="2_wa8a7"]
@@ -14,6 +14,11 @@ colors = PackedColorArray(0.85537, 0.7114, 0.966085, 1, 0.95637, 0.73546, 0.4021
 gradient = SubResource("Gradient_dd8hb")
 fill_from = Vector2(0.779817, 0.752294)
 fill_to = Vector2(0.334862, 0.302752)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vppgw"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
@@ -43,3 +48,6 @@ one_shot = true
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vppgw")

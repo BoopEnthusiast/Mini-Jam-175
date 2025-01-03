@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2sfgiye8m21p"]
+[gd_scene load_steps=4 format=3 uid="uid://c2sfgiye8m21p"]
 
 [ext_resource type="PackedScene" uid="uid://ckb4ovkhr6os7" path="res://entities/player/player.tscn" id="1_sv5rq"]
+[ext_resource type="Script" path="res://worlds/main.gd" id="1_v4exo"]
 [ext_resource type="PackedScene" uid="uid://cwjahemx1p0f7" path="res://objects/container.tscn" id="2_xuwyc"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_v4exo")
 
 [node name="Camera" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_sv5rq")]
 position = Vector2(0, 153)
+collision_mask = 1
 
 [node name="Container" parent="." instance=ExtResource("2_xuwyc")]

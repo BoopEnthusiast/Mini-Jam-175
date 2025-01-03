@@ -1,5 +1,7 @@
 extends Node
 
 
-var multiplayer_peer = ENetMultiplayerPeer.new()
-var player_2_id = -1
+var player_1_id: int
+var player_2_id: int
+
+var spawner_node: Spawner

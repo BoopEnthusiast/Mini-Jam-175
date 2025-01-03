@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwjahemx1p0f7"]
+[gd_scene load_steps=9 format=3 uid="uid://cwjahemx1p0f7"]
 
 [ext_resource type="Script" path="res://objects/spawner.gd" id="1_njwkd"]
 
@@ -25,6 +25,8 @@ colors = PackedColorArray(0.976944, 0.682097, 0.769168, 1, 0.925984, 0.755357, 0
 gradient = SubResource("Gradient_cs6ya")
 fill_from = Vector2(0, 0.682609)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cdotj"]
+
 [node name="Container" type="StaticBody2D"]
 
 [node name="Collider" type="CollisionPolygon2D" parent="."]
@@ -46,4 +48,9 @@ scale = Vector2(9.375, 23.4375)
 texture = SubResource("GradientTexture2D_w7l1g")
 
 [node name="Spawner" type="Marker2D" parent="."]
+position = Vector2(0, -521)
 script = ExtResource("1_njwkd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawner"]
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_cdotj")
