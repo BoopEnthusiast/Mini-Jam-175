@@ -16,7 +16,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lobby"]
+[node name="CopyIP" type="Button" parent="CanvasLayer/Lobby"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -15.5
+offset_right = 49.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Copy Self IP"
+
+[node name="LobbyContainer" type="HBoxContainer" parent="CanvasLayer/Lobby"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,17 +46,30 @@ offset_bottom = 140.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Host" type="Button" parent="CanvasLayer/Lobby/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Lobby/LobbyContainer"]
+layout_mode = 2
+
+[node name="IPEnter" type="TextEdit" parent="CanvasLayer/Lobby/LobbyContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme = ExtResource("1_4cnto")
+placeholder_text = "IP"
+autowrap_mode = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Lobby/LobbyContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="CanvasLayer/Lobby/LobbyContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_4cnto")
 text = "Host"
 
-[node name="Join" type="Button" parent="CanvasLayer/Lobby/VBoxContainer"]
+[node name="Join" type="Button" parent="CanvasLayer/Lobby/LobbyContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_4cnto")
 text = "Join"
 
-[node name="Singleplayer" type="Button" parent="CanvasLayer/Lobby/VBoxContainer"]
+[node name="Singleplayer" type="Button" parent="CanvasLayer/Lobby/LobbyContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_4cnto")
 text = "Singleplayer"
@@ -52,6 +81,8 @@ offset_right = 977.0
 offset_bottom = 29.0
 theme = ExtResource("1_4cnto")
 
-[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/Join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/CopyIP" to="." method="_on_copy_ip_pressed"]
+[connection signal="text_changed" from="CanvasLayer/Lobby/LobbyContainer/VBoxContainer2/IPEnter" to="." method="_on_ip_text_changed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
