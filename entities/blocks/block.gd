@@ -4,8 +4,8 @@ extends RigidBody2D
 var has_hit_player := false
 
 func _physics_process(_delta):
-    if sleeping:
-        freeze = true
+    # if sleeping:
+    #     freeze = true
 
     if not has_hit_player:
         var state := PhysicsServer2D.body_get_direct_state(get_rid())
