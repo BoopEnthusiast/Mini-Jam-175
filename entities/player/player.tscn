@@ -1,10 +1,138 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=25 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
 [ext_resource type="Texture2D" uid="uid://dkllnwvkuvugn" path="res://entities/player/spr_player_idle.png" id="2_wa8a7"]
+[ext_resource type="Texture2D" uid="uid://dtbghds6wdwbi" path="res://entities/player/spr_player_fall.png" id="3_rgi6r"]
+[ext_resource type="Texture2D" uid="uid://didn7tr02mvla" path="res://entities/player/spr_player_land-Sheet.png" id="4_jninj"]
+[ext_resource type="Texture2D" uid="uid://d3hudqjfnrky8" path="res://entities/player/spr_player_rise.png" id="5_luymd"]
+[ext_resource type="Texture2D" uid="uid://1p4080uly1fn" path="res://entities/player/spr_player_walk.png" id="6_qoqho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf7d2"]
-size = Vector2(100, 100)
+size = Vector2(66.6667, 55.5556)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vppgw"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep80b"]
+atlas = ExtResource("2_wa8a7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qti0"]
+atlas = ExtResource("3_rgi6r")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qm1c"]
+atlas = ExtResource("4_jninj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4pa2"]
+atlas = ExtResource("4_jninj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0327w"]
+atlas = ExtResource("4_jninj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77e8d"]
+atlas = ExtResource("4_jninj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsu1c"]
+atlas = ExtResource("4_jninj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmurt"]
+atlas = ExtResource("4_jninj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pnvg"]
+atlas = ExtResource("4_jninj")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jchu"]
+atlas = ExtResource("4_jninj")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arqgq"]
+atlas = ExtResource("5_luymd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xi6r"]
+atlas = ExtResource("6_qoqho")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc076"]
+atlas = ExtResource("6_qoqho")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7o3ho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep80b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qti0")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qm1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4pa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0327w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77e8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsu1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmurt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pnvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jchu")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arqgq")
+}],
+"loop": true,
+"name": &"rise",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xi6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc076")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_dd8hb"]
 offsets = PackedFloat32Array(0, 0.532468, 1)
@@ -15,6 +143,7 @@ gradient = SubResource("Gradient_dd8hb")
 fill_from = Vector2(0.779817, 0.752294)
 fill_to = Vector2(0.334862, 0.302752)
 
+<<<<<<< Updated upstream
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vppgw"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -26,24 +155,16 @@ properties/2/path = NodePath(".:velocity_copy")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
+=======
+>>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_85tuv")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(2.98023e-08, -0.5)
 scale = Vector2(0.45, 0.45)
 shape = SubResource("RectangleShape2D_gf7d2")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-clip_children = 1
-position = Vector2(0, -27)
-scale = Vector2(1.5625, 1.5625)
-texture = ExtResource("2_wa8a7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
-position = Vector2(0.64, 16)
-scale = Vector2(0.64, 0.64)
-texture = SubResource("GradientTexture2D_5mgjg")
 
 [node name="CoyoteTime" type="Timer" parent="."]
 process_callback = 0
@@ -57,4 +178,17 @@ one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vppgw")
+<<<<<<< Updated upstream
 visibility_update_mode = 1
+=======
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+clip_children = 2
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_7o3ho")
+animation = &"land"
+
+[node name="Gradient" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, 9)
+texture = SubResource("GradientTexture2D_5mgjg")
+>>>>>>> Stashed changes
