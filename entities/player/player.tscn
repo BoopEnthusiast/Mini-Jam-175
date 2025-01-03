@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=28 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
 [ext_resource type="Texture2D" uid="uid://dkllnwvkuvugn" path="res://entities/player/spr_player_idle.png" id="2_wa8a7"]
@@ -156,14 +156,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_tbdk2"]
+script/source = "extends AnimatedSprite2D
+
+
+const ROT = 0.5 # Rate of change
+const S = 0.8
+const L = 0.8
+
+var hue = 0.0
+
+@onready var gradient: Sprite2D = $Gradient
+
+
+func _process(delta: float) -> void:
+	var texture = gradient.texture as GradientTexture2D
+	hue += delta * ROT
+	for point in range(2):
+		print(hue + (float(point) / 2))
+		texture.gradient.set_color(point, Color.from_ok_hsl(hue + (float(point) / 2), S, L))
+"
+
 [sub_resource type="Gradient" id="Gradient_dd8hb"]
-offsets = PackedFloat32Array(0, 0.532468, 1)
-colors = PackedColorArray(0.85537, 0.7114, 0.966085, 1, 0.95637, 0.73546, 0.402115, 1, 0.488663, 0.832763, 0.965486, 1)
+colors = PackedColorArray(0.85537, 0.7114, 0.966085, 1, 0.488663, 0.832763, 0.965486, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5mgjg"]
 gradient = SubResource("Gradient_dd8hb")
-fill_from = Vector2(0.779817, 0.752294)
-fill_to = Vector2(0.334862, 0.302752)
+fill_from = Vector2(0.756522, 0.717391)
+fill_to = Vector2(0.3, 0.373913)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
@@ -194,7 +214,9 @@ position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_7o3ho")
 animation = &"wall"
 autoplay = "default"
+script = SubResource("GDScript_tbdk2")
 
 [node name="Gradient" type="Sprite2D" parent="Sprite"]
 position = Vector2(0, 9)
+scale = Vector2(1.5, 1.40625)
 texture = SubResource("GradientTexture2D_5mgjg")
