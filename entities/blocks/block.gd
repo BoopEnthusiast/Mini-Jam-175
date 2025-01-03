@@ -24,16 +24,19 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
     if not (body is Player):
         return
 
-    # Hit should only occur if the force the block applies to the player is large.
-    # E.g., the player jumping into the side of the block, mid-air should not count.
-    # The contact normal should be within a certain n degrees of Vector2.DOWN
+    var player_body: Player = body
     
+    # Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
+    # The contact normal should be within a certain n degrees of Vector2.DOWN.
     var contact_normal := -state.get_contact_local_normal(contact_index)
     var contact_dot_product := Vector2.DOWN.dot(contact_normal)
-
     # Contact angle must be <90°
     if contact_dot_product <= 0.0:
         return
     
+    # Hit should be a crush, so the player must be grounded.
+    if not player_body.is_on_floor():
+        return
+
     has_hit_player = true
     print("Block hit player") # TODO replace with damage code
