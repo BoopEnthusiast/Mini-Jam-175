@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpvw7231jbps3"]
+
+[ext_resource type="Script" path="res://entities/blocks/block.gd" id="1_plw3n"]
+
+[sub_resource type="Gradient" id="Gradient_mlc6n"]
+offsets = PackedFloat32Array(0.0060241, 0.5, 1)
+colors = PackedColorArray(0.871696, 0.783045, 0.287818, 1, 0.940662, 0.683169, 0.881068, 1, 0.439113, 0.843865, 0.954724, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_833c3"]
+gradient = SubResource("Gradient_mlc6n")
+fill_from = Vector2(0, 1)
+
+[node name="SquareBlock" type="RigidBody2D"]
+mass = 8.0
+contact_monitor = true
+max_contacts_reported = 32
+script = ExtResource("1_plw3n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = SubResource("GradientTexture2D_833c3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
