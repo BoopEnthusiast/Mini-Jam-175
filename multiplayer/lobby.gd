@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 
 const MAIN = preload("res://worlds/main.tscn")
@@ -22,6 +22,8 @@ func _on_host_pressed() -> void:
 	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Hosting now")
 	host_join_label.text = "Host"
+	setup_world()
+	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
 
 
 func _on_join_pressed() -> void:
@@ -29,10 +31,25 @@ func _on_join_pressed() -> void:
 	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Joining server")
 	host_join_label.text = "Client"
-
-
-func _player_connected() -> void:
+	setup_world()
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
+
+
+func setup_world() -> void:
 	var new_main = MAIN.instantiate()
 	add_child(new_main)
 	lobby.visible = false
+
+
+func _player_connected(id: int) -> void:
+	print("player connected")
+	if multiplayer.is_server():
+		MultiplayerSingleton.player_2_id = id
+	else:
+		MultiplayerSingleton.player_1_id = id
+	call_deferred("set_node_authority")
+
+
+func set_node_authority() -> void:
+	MultiplayerSingleton.spawner_node.set_multiplayer_authority(MultiplayerSingleton.player_2_id)
+	Singleton.player.set_multiplayer_authority(MultiplayerSingleton.player_1_id)

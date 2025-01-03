@@ -24,6 +24,8 @@ func _enter_tree() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

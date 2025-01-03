@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://by4asbf8mj04j" path="res://multiplayer/LobbyTheme.tres" id="1_4cnto"]
 [ext_resource type="Script" path="res://multiplayer/lobby.gd" id="1_7m7tk"]
 
-[node name="Main" type="Node2D"]
+[node name="Root" type="Node2D"]
 script = ExtResource("1_7m7tk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
