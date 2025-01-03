@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwjahemx1p0f7"]
+[gd_scene load_steps=8 format=3 uid="uid://cwjahemx1p0f7"]
+
+[ext_resource type="Script" path="res://objects/spawner.gd" id="1_njwkd"]
 
 [sub_resource type="Gradient" id="Gradient_k0pck"]
 colors = PackedColorArray(0.453526, 0.840693, 0.958384, 1, 0.542635, 0.881193, 0.418778, 1)
@@ -8,7 +10,8 @@ gradient = SubResource("Gradient_k0pck")
 fill_to = Vector2(0.990826, 0.678899)
 
 [sub_resource type="Gradient" id="Gradient_8gmc1"]
-colors = PackedColorArray(0.542635, 0.881193, 0.418778, 1, 0.976944, 0.682097, 0.769168, 1)
+offsets = PackedFloat32Array(0, 0.518072, 1)
+colors = PackedColorArray(0.542635, 0.881193, 0.418778, 1, 0.467782, 0.837514, 0.961556, 1, 0.976944, 0.682097, 0.769168, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w3e5m"]
 gradient = SubResource("Gradient_8gmc1")
@@ -41,3 +44,6 @@ texture = SubResource("GradientTexture2D_w3e5m")
 position = Vector2(700, 150)
 scale = Vector2(9.375, 23.4375)
 texture = SubResource("GradientTexture2D_w7l1g")
+
+[node name="Spawner" type="Marker2D" parent="."]
+script = ExtResource("1_njwkd")
