@@ -1,9 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
-var new_func = Callable(self, "_checkState")
-
-
+var checkState = func():
+	if velocity.y < 20:
+		sprite.play("rise")
+	else:
+		sprite.play("fall")
+	
+	if is_on_floor:
+		setStateGrounded()
 
 const SPEED = 300.0
 const ACCEL = 70.0
@@ -14,6 +19,7 @@ var has_double_jumped := false
 var has_pressed_jump := false
 
 var health := 3
+var direction = 0
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
@@ -50,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			jump_buffer.start()
 	
 	# Get the input direction and handle the movement/deceleration. Only set if is the authority
-	var direction = Input.get_axis("left", "right")
+	direction = Input.get_axis("left", "right")
 	
 	if direction:
 		if direction == -1:
@@ -66,17 +72,24 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# I usually do this through a state machine, but this'll do for now. <(o3o)/
-	if is_on_floor():
-		if direction:
-			sprite.play("walk")
-		else:
-			sprite.play("default")
-	else:
+	checkState.call()
+
+func setStateAirborne() -> void:
+	checkState = func():
 		if velocity.y < 20:
 			sprite.play("rise")
 		else:
 			sprite.play("fall")
+		
+		if is_on_floor():
+			setStateGrounded()
 
-func _checkState() -> void:
-	print("awawa")
+func setStateGrounded() -> void:
+	checkState = func():
+		if direction:
+			sprite.play("walk")
+		else:
+			sprite.play("default")
+		
+		if not is_on_floor():
+			setStateAirborne()
