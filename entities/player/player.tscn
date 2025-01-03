@@ -169,7 +169,7 @@ replication_config = SubResource("SceneReplicationConfig_vppgw")
 clip_children = 2
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_7o3ho")
-animation = &"land"
+autoplay = "default"
 
 [node name="Gradient" type="Sprite2D" parent="Sprite"]
 position = Vector2(0, 9)
