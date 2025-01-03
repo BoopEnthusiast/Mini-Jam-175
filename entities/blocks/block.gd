@@ -24,7 +24,7 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
     if not (body is Player):
         return
 
-    var player_body: Player = body
+    var player: Player = body
     
     # Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
     # The contact normal should be within a certain n degrees of Vector2.DOWN.
@@ -35,8 +35,10 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
         return
     
     # Hit should be a crush, so the player must be grounded.
-    if not player_body.is_on_floor():
+    if not player.is_on_floor():
         return
 
     has_hit_player = true
-    print("Block hit player") # TODO replace with damage code
+    player.health -= 1
+    print("Block hit player")
+    # TODO destroy block?
