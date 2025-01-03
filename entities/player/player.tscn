@@ -1,28 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=4 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
+[ext_resource type="Texture2D" uid="uid://dkllnwvkuvugn" path="res://entities/player/spr_player_idle.png" id="2_wa8a7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf7d2"]
 size = Vector2(100, 100)
-
-[sub_resource type="Gradient" id="Gradient_oxvyt"]
-offsets = PackedFloat32Array(0.0060241, 0.487952, 1)
-colors = PackedColorArray(0.871696, 0.783045, 0.287818, 1, 0.940662, 0.683169, 0.881068, 1, 0.439113, 0.843865, 0.954724, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_q8rct"]
-gradient = SubResource("Gradient_oxvyt")
-fill_from = Vector2(0.13913, 0.143478)
-fill_to = Vector2(0.973913, 0.934783)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_85tuv")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+scale = Vector2(0.45, 0.45)
 shape = SubResource("RectangleShape2D_gf7d2")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(1.5625, 1.5625)
-texture = SubResource("GradientTexture2D_q8rct")
+texture = ExtResource("2_wa8a7")
 
 [node name="CoyoteTime" type="Timer" parent="."]
 process_callback = 0
