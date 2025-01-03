@@ -114,11 +114,6 @@ func setStateWallslide() -> void:
 	sprite.play("wall")
 	
 	checkState = func():
-		
-		var format_string = "X-norm: %s, Y-norm: %s"
-		var actual_string = format_string % [get_wall_normal().x, get_wall_normal().y]
-		print(actual_string)
-		
 		if is_on_floor():
 			setStateGrounded()
 		elif not is_on_wall():
