@@ -16,6 +16,9 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 	
+	if MultiplayerSingleton.is_singleplayer:
+		pass # TODO: move above player
+	
 	var direction = Input.get_axis("left", "right")
 	position.x += direction * SPEED * delta
 	
