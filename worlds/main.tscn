@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2sfgiye8m21p"]
+[gd_scene load_steps=8 format=3 uid="uid://c2sfgiye8m21p"]
 
 [ext_resource type="PackedScene" uid="uid://ckb4ovkhr6os7" path="res://entities/player/player.tscn" id="1_sv5rq"]
 [ext_resource type="Script" path="res://worlds/main.gd" id="1_v4exo"]
 [ext_resource type="Script" path="res://entities/camera/camera.gd" id="2_gtne4"]
 [ext_resource type="PackedScene" uid="uid://cwjahemx1p0f7" path="res://objects/container.tscn" id="2_xuwyc"]
+[ext_resource type="Script" path="res://worlds/area_2d.gd" id="5_dsxlw"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ppqc4"]
 noise_type = 0
 frequency = 0.015
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvnle"]
+size = Vector2(9.83, 2.22)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_v4exo")
@@ -21,3 +25,13 @@ position = Vector2(0, 153)
 collision_mask = 1
 
 [node name="Container" parent="." instance=ExtResource("2_xuwyc")]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("5_dsxlw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -637)
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_xvnle")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
