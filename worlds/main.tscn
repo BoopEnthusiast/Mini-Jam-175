@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2sfgiye8m21p"]
+
+[ext_resource type="PackedScene" uid="uid://ckb4ovkhr6os7" path="res://entities/player/player.tscn" id="1_sv5rq"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_sv5rq")]
+position = Vector2(0, 153)
+
+[node name="Container" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Container"]
+polygon = PackedVector2Array(-400, 500, -400, -600, -1000, -600, -1000, 900, 1000, 900, 1000, -600, 400, -600, 400, 500)
