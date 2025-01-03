@@ -54,3 +54,9 @@ script = ExtResource("1_njwkd")
 [node name="Sprite2D" type="Sprite2D" parent="Spawner"]
 scale = Vector2(48, 48)
 texture = SubResource("PlaceholderTexture2D_cdotj")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_spawn_timer_timeout"]
