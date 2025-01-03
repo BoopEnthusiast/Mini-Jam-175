@@ -1,8 +1,43 @@
-[gd_scene format=3 uid="uid://cwjahemx1p0f7"]
+[gd_scene load_steps=7 format=3 uid="uid://cwjahemx1p0f7"]
+
+[sub_resource type="Gradient" id="Gradient_k0pck"]
+colors = PackedColorArray(0.453526, 0.840693, 0.958384, 1, 0.542635, 0.881193, 0.418778, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m2n45"]
+gradient = SubResource("Gradient_k0pck")
+fill_to = Vector2(0.990826, 0.678899)
+
+[sub_resource type="Gradient" id="Gradient_8gmc1"]
+colors = PackedColorArray(0.542635, 0.881193, 0.418778, 1, 0.976944, 0.682097, 0.769168, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w3e5m"]
+gradient = SubResource("Gradient_8gmc1")
+fill_from = Vector2(0, 0.43913)
+fill_to = Vector2(1, 0.33913)
+
+[sub_resource type="Gradient" id="Gradient_cs6ya"]
+colors = PackedColorArray(0.976944, 0.682097, 0.769168, 1, 0.925984, 0.755357, 0.332448, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w7l1g"]
+gradient = SubResource("Gradient_cs6ya")
+fill_from = Vector2(0, 0.682609)
 
 [node name="Container" type="StaticBody2D"]
 
 [node name="Collider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-400, 500, -400, -600, -1000, -600, -1000, 900, 1000, 900, 1000, -600, 400, -600, 400, 500)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="LeftWall" type="Sprite2D" parent="."]
+position = Vector2(-700, 150)
+scale = Vector2(9.375, 23.4375)
+texture = SubResource("GradientTexture2D_m2n45")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(7.39098e-06, 700)
+scale = Vector2(12.5, 6.25)
+texture = SubResource("GradientTexture2D_w3e5m")
+
+[node name="RightWall" type="Sprite2D" parent="."]
+position = Vector2(700, 150)
+scale = Vector2(9.375, 23.4375)
+texture = SubResource("GradientTexture2D_w7l1g")
