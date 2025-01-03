@@ -1,15 +1,20 @@
+class_name Player
 extends CharacterBody2D
 
 
 const SPEED = 300.0
-const ACCEL = 100.0
-
+const ACCEL = 70.0
 const JUMP_VELOCITY = -400.0
 
-var was_on_floor: bool = false
-var has_double_jumped: bool = false
+var was_on_floor := false
+var has_double_jumped := false
+var has_pressed_jump := false
 
 @onready var coyote_time: Timer = $CoyoteTime
+
+
+func _enter_tree() -> void:
+	Singleton.player = self
 
 
 func _physics_process(delta: float) -> void:
