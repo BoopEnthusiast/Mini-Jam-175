@@ -35,12 +35,6 @@ func _on_join_pressed() -> void:
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
 
 
-func setup_world() -> void:
-	var new_main = MAIN.instantiate()
-	add_child(new_main)
-	lobby.visible = false
-
-
 func _player_connected(id: int) -> void:
 	print("player connected")
 	if multiplayer.is_server():
@@ -48,6 +42,12 @@ func _player_connected(id: int) -> void:
 	else:
 		MultiplayerSingleton.player_1_id = id
 	call_deferred("set_node_authority")
+
+
+func setup_world() -> void:
+	var new_main = MAIN.instantiate()
+	add_child(new_main)
+	lobby.visible = false
 
 
 func set_node_authority() -> void:

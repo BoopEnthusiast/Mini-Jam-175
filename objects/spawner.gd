@@ -9,6 +9,7 @@ const SPEED = 100.0
 
 func _enter_tree() -> void:
 	MultiplayerSingleton.spawner_node = self
+	multiplayer
 
 
 func _physics_process(delta: float) -> void:

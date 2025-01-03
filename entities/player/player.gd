@@ -6,10 +6,13 @@ const SPEED = 300.0
 const ACCEL = 70.0
 const JUMP_VELOCITY = -400.0
 
-var spr_idle = load("res://entities/player/spr_player_idle.png")
+@export var direction: float
+@export var velocity_copy: Vector2
+
+var spr_idle = preload("res://entities/player/spr_player_idle.png")
 # var spr_walk = load() TODO figure out animated sprites.
-var spr_rise = load("res://entities/player/spr_player_rise.png")
-var spr_fall = load("res://entities/player/spr_player_fall.png")
+var spr_rise = preload("res://entities/player/spr_player_rise.png")
+var spr_fall = preload("res://entities/player/spr_player_fall.png")
 
 var was_on_floor := false
 var has_double_jumped := false
@@ -17,15 +20,19 @@ var has_pressed_jump := false
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
+@onready var sprite: Sprite2D = $Sprite
 
 
 func _enter_tree() -> void:
 	Singleton.player = self
+	multiplayer
 
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
+	# Mimic velocity to be seen by MultiplayerSyncronizer and copied to the other player
+	if is_multiplayer_authority():
+		velocity_copy = velocity
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -34,8 +41,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		has_double_jumped = false
 	
-	# Handle jump..
-	if Input.is_action_just_pressed("jump_spawn"):
+	# Handle jump. Only set if is the authority
+	if Input.is_action_just_pressed("jump_spawn") and is_multiplayer_authority():
 		if is_on_floor() or not coyote_time.is_stopped():
 			velocity.y = JUMP_VELOCITY
 		elif not has_double_jumped:
@@ -46,15 +53,15 @@ func _physics_process(delta: float) -> void:
 		else:
 			jump_buffer.start()
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
+	# Get the input direction and handle the movement/deceleration. Only set if is the authority
+	if is_multiplayer_authority():
+		direction = Input.get_axis("left", "right")
 	
 	if direction:
 		if direction == -1:
-			$Sprite.flip_h = true
+			sprite.flip_h = true
 		else:
-			$Sprite.flip_h = false
+			sprite.flip_h = false
 		
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCEL)
 	else:
@@ -67,11 +74,11 @@ func _physics_process(delta: float) -> void:
 	# I usually do this through a state machine, but this'll do for now. <(o3o)/
 	if is_on_floor():
 		if direction:
-			$Sprite.texture = spr_idle
+			sprite.texture = spr_idle
 		else:
-			$Sprite.texture = spr_idle #PLACEHOLDER! TODO: figure out animated sprites
+			sprite.texture = spr_idle #PLACEHOLDER! TODO: figure out animated sprites
 	else:
 		if velocity.y < 20:
-			$Sprite.texture = spr_rise
+			sprite.texture = spr_rise
 		else:
-			$Sprite.texture = spr_fall
+			sprite.texture = spr_fall
