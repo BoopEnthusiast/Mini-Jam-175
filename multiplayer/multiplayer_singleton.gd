@@ -6,4 +6,4 @@ var player_2_id: int
 
 var spawner_node: Spawner
 
-var is_singleplayer: bool = true
+var is_singleplayer: bool = false

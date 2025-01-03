@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm15fijrfl4ri"]
+[gd_scene load_steps=5 format=3 uid="uid://bhunulgthec1a"]
 
 [ext_resource type="Script" path="res://entities/blocks/block.gd" id="1_712gw"]
 
@@ -11,6 +11,14 @@ gradient = SubResource("Gradient_mlc6n")
 height = 96
 fill_from = Vector2(0.239316, 0.901709)
 fill_to = Vector2(0.683761, 0.111111)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jh3ye"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="LBlock" type="RigidBody2D"]
 mass = 8.0
@@ -31,5 +39,8 @@ texture = SubResource("GradientTexture2D_833c3")
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0, 1, 1)
 polygon = PackedVector2Array(-32, -48, 0, -48, 0, 16, 32, 16, 32, 48, 0, 48, -32, 48)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jh3ye")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -33,7 +33,10 @@ var direction := 0
 
 func _enter_tree() -> void:
 	Singleton.player = self
-	multiplayer
+
+
+func _ready() -> void:
+	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
 
 
 func _physics_process(delta: float) -> void:
