@@ -1,6 +1,4 @@
 extends Node
 
 
-func _enter_tree() -> void:
-	multiplayer
-	
+var player_2_id = -1
