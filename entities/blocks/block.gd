@@ -30,8 +30,8 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
     # The contact normal should be within a certain n degrees of Vector2.DOWN.
     var contact_normal := -state.get_contact_local_normal(contact_index)
     var contact_dot_product := Vector2.DOWN.dot(contact_normal)
-    # Contact angle must be <90°
-    if contact_dot_product <= 0.0:
+    # Contact angle must be <45°
+    if contact_dot_product <= 0.5:
         return
     
     # Hit should be a crush, so the player must be grounded.
