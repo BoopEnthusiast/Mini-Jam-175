@@ -37,6 +37,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
+	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
 
 
 func _physics_process(delta: float) -> void:

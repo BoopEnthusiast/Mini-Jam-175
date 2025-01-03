@@ -21,7 +21,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	set_multiplayer_authority(MultiplayerSingleton.player_2_id)
+	if not MultiplayerSingleton.is_singleplayer:
+		set_multiplayer_authority(MultiplayerSingleton.player_2_id)
 	print("Spawner authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
 	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
 
