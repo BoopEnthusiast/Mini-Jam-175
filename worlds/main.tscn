@@ -1,10 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2sfgiye8m21p"]
+[gd_scene load_steps=10 format=3 uid="uid://c2sfgiye8m21p"]
 
 [ext_resource type="PackedScene" uid="uid://ckb4ovkhr6os7" path="res://entities/player/player.tscn" id="1_sv5rq"]
 [ext_resource type="Script" path="res://worlds/main.gd" id="1_v4exo"]
 [ext_resource type="Script" path="res://entities/camera/camera.gd" id="2_gtne4"]
 [ext_resource type="PackedScene" uid="uid://cwjahemx1p0f7" path="res://objects/container.tscn" id="2_xuwyc"]
 [ext_resource type="Script" path="res://worlds/area_2d.gd" id="5_dsxlw"]
+
+[sub_resource type="Gradient" id="Gradient_7q8my"]
+colors = PackedColorArray(0.273815, 0.500385, 0.594264, 1, 0.51962, 0.465608, 0.261104, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mrrhx"]
+gradient = SubResource("Gradient_7q8my")
+fill_from = Vector2(0.56087, 0)
+fill_to = Vector2(0.63913, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ppqc4"]
 noise_type = 0
@@ -15,6 +23,10 @@ size = Vector2(9.83, 2.18)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_v4exo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(43.9375, 43.9375)
+texture = SubResource("GradientTexture2D_mrrhx")
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("2_gtne4")

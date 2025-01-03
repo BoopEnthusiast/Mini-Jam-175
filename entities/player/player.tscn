@@ -157,13 +157,13 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_dd8hb"]
-colors = PackedColorArray(0.745631, 0.83222, 0.284213, 1, 0.804218, 0.732909, 0.977336, 1)
+colors = PackedColorArray(0.836881, 0.719171, 0.971626, 1, 0.673699, 0.853528, 0.314814, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5mgjg"]
 gradient = SubResource("Gradient_dd8hb")
 use_hdr = true
-fill_from = Vector2(0.281085, 0.705125)
-fill_to = Vector2(0.294876, 0.281084)
+fill_from = Vector2(0.365036, 0.232073)
+fill_to = Vector2(0.634964, 0.767927)
 metadata/_snap_enabled = true
 metadata/_snap_count = 3
 
@@ -190,7 +190,6 @@ func _process(delta: float) -> void:
 	from_angle += delta
 	to_angle += delta
 	for point in range(2):
-		print(hue + (float(point) / 2))
 		texture.gradient.set_color(point, Color.from_ok_hsl(hue + (float(point) / 2), S, L))
 	
 	texture.fill_from = Vector2.from_angle(from_angle) * FILL_RADIUS + Vector2.ONE / 2
