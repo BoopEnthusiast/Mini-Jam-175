@@ -21,9 +21,10 @@ const JUMP_VELOCITY = -400.0
 var was_on_floor := false
 var has_double_jumped := false
 var has_pressed_jump := false
+var has_wall_jumped := false
 
 var health := 3
-var direction = 0
+var direction := 0
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
@@ -46,12 +47,14 @@ func _physics_process(delta: float) -> void:
 			coyote_time.start()
 	else:
 		has_double_jumped = false
+		has_wall_jumped = false
 	
 	# Handle jump. Only set if is the authority
 	if Input.is_action_just_pressed("jump_spawn"):
 		if is_on_floor() or not coyote_time.is_stopped():
 			velocity.y = JUMP_VELOCITY
-		elif is_on_wall_only:
+		elif is_on_wall_only() and not has_wall_jumped:
+			has_wall_jumped = true
 			velocity.y = JUMP_VELOCITY
 			velocity.x = get_wall_normal().x * SPEED
 		elif not has_double_jumped:
@@ -103,8 +106,6 @@ func setStateGrounded() -> void:
 			setStateAirborne()
 
 func setStateWallslide() -> void:
-	has_double_jumped = false
-	
 	if get_wall_normal().x == 1:
 		sprite.flip_h = false
 	else:
