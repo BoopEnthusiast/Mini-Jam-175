@@ -22,7 +22,6 @@ func _on_host_pressed() -> void:
 	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Hosting now")
 	host_join_label.text = "Host"
-	setup_world()
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
 
 
@@ -31,7 +30,6 @@ func _on_join_pressed() -> void:
 	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Joining server")
 	host_join_label.text = "Client"
-	setup_world()
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
 
 
@@ -42,6 +40,7 @@ func _player_connected(id: int) -> void:
 	else:
 		MultiplayerSingleton.player_1_id = id
 	call_deferred("set_node_authority")
+	setup_world()
 
 
 func setup_world() -> void:
