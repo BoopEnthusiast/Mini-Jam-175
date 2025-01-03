@@ -11,6 +11,7 @@ var has_double_jumped := false
 var has_pressed_jump := false
 
 @onready var coyote_time: Timer = $CoyoteTime
+@onready var jump_buffer: Timer = $JumpBuffer
 
 
 func _enter_tree() -> void:
@@ -33,6 +34,10 @@ func _physics_process(delta: float) -> void:
 		elif not has_double_jumped:
 			velocity.y = JUMP_VELOCITY
 			has_double_jumped = true
+		elif not jump_buffer.is_stopped() and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		else:
+			jump_buffer.start()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -42,6 +47,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, ACCEL)
 	
-	move_and_slide()
-	
 	was_on_floor = is_on_floor()
+	
+	move_and_slide()
