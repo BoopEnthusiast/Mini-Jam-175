@@ -18,6 +18,8 @@ var was_on_floor := false
 var has_double_jumped := false
 var has_pressed_jump := false
 
+var health := 3
+
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
 @onready var sprite: Sprite2D = $Sprite
