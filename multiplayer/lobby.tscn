@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://bkdhc8gojlk4u"]
+[gd_scene load_steps=3 format=3 uid="uid://bkdhc8gojlk4u"]
+
+[ext_resource type="Theme" uid="uid://by4asbf8mj04j" path="res://multiplayer/LobbyTheme.tres" id="1_4cnto"]
+[ext_resource type="Script" path="res://multiplayer/lobby.gd" id="1_7m7tk"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -7,8 +10,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7m7tk")
 
-[node name="Button" type="Button" parent="."]
+[node name="Host" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,10 +25,10 @@ offset_right = 199.0
 offset_bottom = -132.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme = ExtResource("1_4cnto")
 text = "Host"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Join" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -32,8 +36,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -199.0
-offset_top = -242.0
+offset_top = 92.0
 offset_right = 199.0
-offset_bottom = -132.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4cnto")
+text = "Join"
+
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
