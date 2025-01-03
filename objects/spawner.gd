@@ -8,8 +8,9 @@ const BLOCKS = [
 	preload("res://entities/blocks/LBlock.tscn"),
 	preload("res://entities/blocks/ZBlock.tscn"),
 ]
-
 const SPEED = 100.0
+
+@onready var spawn_timer: Timer = $Timer
 
 var can_spawn_block := false
 
@@ -45,6 +46,7 @@ func spawn_block():
 	if not can_spawn_block:
 		return
 
+	spawn_timer.start()
 	can_spawn_block = false
 
 	var block_index := randi_range(0, BLOCKS.size() - 1)
