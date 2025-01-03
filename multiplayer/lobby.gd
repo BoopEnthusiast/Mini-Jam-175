@@ -3,7 +3,14 @@ extends Control
 
 const MAIN = preload("res://worlds/main.tscn")
 
+const PORT = 6969
+const ADDRESS = "localhost"
+const MAX_CLIENTS = 2
+
 var multiplayer_peer = ENetMultiplayerPeer.new()
+
+@onready var lobby: Control = $CanvasLayer/Lobby
+@onready var host_join_label: Label = $CanvasLayer/HostJoinLabel
 
 
 func _ready() -> void: 
@@ -11,19 +18,21 @@ func _ready() -> void:
 
 
 func _on_host_pressed() -> void:
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(6969, 2)
-	multiplayer.multiplayer_peer = peer
+	multiplayer_peer.create_server(PORT, MAX_CLIENTS)
+	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Hosting now")
+	host_join_label.text = "Host"
 
 
 func _on_join_pressed() -> void:
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("127.0.0.1", 6969)
-	multiplayer.multiplayer_peer = peer
+	multiplayer_peer.create_client(ADDRESS, PORT)
+	multiplayer.multiplayer_peer = multiplayer_peer
 	print("Joining server")
-	print("Heyl yeah")
+	host_join_label.text = "Client"
 
 
 func _player_connected() -> void:
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
+	var new_main = MAIN.instantiate()
+	add_child(new_main)
+	lobby.visible = false

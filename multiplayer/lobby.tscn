@@ -3,16 +3,20 @@
 [ext_resource type="Theme" uid="uid://by4asbf8mj04j" path="res://multiplayer/LobbyTheme.tres" id="1_4cnto"]
 [ext_resource type="Script" path="res://multiplayer/lobby.gd" id="1_7m7tk"]
 
-[node name="Lobby" type="Control"]
+[node name="Main" type="Node2D"]
+script = ExtResource("1_7m7tk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lobby" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7m7tk")
 
-[node name="Host" type="Button" parent="."]
+[node name="Host" type="Button" parent="CanvasLayer/Lobby"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,7 +32,7 @@ grow_vertical = 2
 theme = ExtResource("1_4cnto")
 text = "Host"
 
-[node name="Join" type="Button" parent="."]
+[node name="Join" type="Button" parent="CanvasLayer/Lobby"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,5 +48,12 @@ grow_vertical = 2
 theme = ExtResource("1_4cnto")
 text = "Join"
 
-[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
+[node name="HostJoinLabel" type="Label" parent="CanvasLayer"]
+offset_left = 937.0
+offset_top = 6.0
+offset_right = 977.0
+offset_bottom = 29.0
+theme = ExtResource("1_4cnto")
+
+[connection signal="pressed" from="CanvasLayer/Lobby/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/Join" to="." method="_on_join_pressed"]
