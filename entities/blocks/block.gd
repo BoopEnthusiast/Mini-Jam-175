@@ -53,9 +53,6 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
 
     if player_force.length() < HIT_MIN_FORCE:
         return
-
-    print(player_force.length())
-
     
     # Hit should be a crush, so the player must be grounded.
     # if not player.is_on_floor():
