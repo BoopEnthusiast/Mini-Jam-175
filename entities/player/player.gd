@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		has_double_jumped = false
 	
-	# Handle jump.
+	# Handle jump..
 	if Input.is_action_just_pressed("jump_spawn"):
 		if is_on_floor() or not coyote_time.is_stopped():
 			velocity.y = JUMP_VELOCITY
