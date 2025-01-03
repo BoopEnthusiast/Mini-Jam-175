@@ -8,6 +8,11 @@ const IMPULSE_DELTA: float = 0.01
 
 var has_hit_player := false
 
+
+func _ready() -> void:
+	set_multiplayer_authority(MultiplayerSingleton.player_1_id)
+
+
 func _physics_process(_delta):
 	# if sleeping:
 	#     freeze = true
