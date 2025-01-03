@@ -59,11 +59,6 @@ func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("left", "right")
 	
 	if direction:
-		if direction == -1:
-			sprite.flip_h = true
-		else:
-			sprite.flip_h = false
-		
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCEL)
 	else:
 		velocity.x = move_toward(velocity.x, 0, ACCEL)
@@ -76,6 +71,8 @@ func _physics_process(delta: float) -> void:
 
 func setStateAirborne() -> void:
 	checkState = func():
+		setFacing()
+		
 		if velocity.y < 20:
 			sprite.play("rise")
 		else:
@@ -83,9 +80,13 @@ func setStateAirborne() -> void:
 		
 		if is_on_floor():
 			setStateGrounded()
+		elif is_on_wall_only():
+			setStateWallslide()
 
 func setStateGrounded() -> void:
 	checkState = func():
+		setFacing()
+		
 		if direction:
 			sprite.play("walk")
 		else:
@@ -93,3 +94,22 @@ func setStateGrounded() -> void:
 		
 		if not is_on_floor():
 			setStateAirborne()
+
+func setStateWallslide() -> void:
+	if get_wall_normal().x == 1:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
+	
+	checkState = func():
+		if is_on_floor():
+			setStateGrounded()
+		elif not is_on_wall():
+			setStateAirborne()
+
+func setFacing() -> void:
+	if direction == -1:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+		
