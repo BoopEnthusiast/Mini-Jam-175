@@ -18,6 +18,7 @@ config/icon="res://misc/icon.svg"
 [autoload]
 
 Singleton="*res://misc/singleton.gd"
+MultiplayerSingleton="*res://multiplayer/multiplayer_singleton.gd"
 
 [display]
 
