@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+var new_func = Callable(self, "_checkState")
+
+
 
 const SPEED = 300.0
 const ACCEL = 70.0
@@ -8,11 +11,6 @@ const JUMP_VELOCITY = -400.0
 
 @export var direction: float
 @export var velocity_copy: Vector2
-
-var spr_idle = preload("res://entities/player/spr_player_idle.png")
-# var spr_walk = load() TODO figure out animated sprites.
-var spr_rise = preload("res://entities/player/spr_player_rise.png")
-var spr_fall = preload("res://entities/player/spr_player_fall.png")
 
 var was_on_floor := false
 var has_double_jumped := false
@@ -22,7 +20,7 @@ var health := 3
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 
 func _enter_tree() -> void:
@@ -76,11 +74,14 @@ func _physics_process(delta: float) -> void:
 	# I usually do this through a state machine, but this'll do for now. <(o3o)/
 	if is_on_floor():
 		if direction:
-			sprite.texture = spr_idle
+			sprite.play("walk")
 		else:
-			sprite.texture = spr_idle #PLACEHOLDER! TODO: figure out animated sprites
+			sprite.play("default")
 	else:
 		if velocity.y < 20:
-			sprite.texture = spr_rise
+			sprite.play("rise")
 		else:
-			sprite.texture = spr_fall
+			sprite.play("fall")
+
+func _checkState() -> void:
+	print("awawa")

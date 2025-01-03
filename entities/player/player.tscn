@@ -143,20 +143,6 @@ gradient = SubResource("Gradient_dd8hb")
 fill_from = Vector2(0.779817, 0.752294)
 fill_to = Vector2(0.334862, 0.302752)
 
-<<<<<<< Updated upstream
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vppgw"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:direction")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:velocity_copy")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
-=======
->>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_85tuv")
@@ -178,9 +164,6 @@ one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vppgw")
-<<<<<<< Updated upstream
-visibility_update_mode = 1
-=======
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 clip_children = 2
@@ -191,4 +174,3 @@ animation = &"land"
 [node name="Gradient" type="Sprite2D" parent="Sprite"]
 position = Vector2(0, 9)
 texture = SubResource("GradientTexture2D_5mgjg")
->>>>>>> Stashed changes
