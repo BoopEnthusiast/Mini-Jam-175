@@ -23,6 +23,7 @@ func _on_host_pressed() -> void:
 	print("Hosting now")
 	host_join_label.text = "Host"
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
+	lobby.visible = false
 
 
 func _on_join_pressed() -> void:
@@ -31,6 +32,7 @@ func _on_join_pressed() -> void:
 	print("Joining server")
 	host_join_label.text = "Client"
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
+	lobby.visible = false
 
 
 func _player_connected(id: int) -> void:
@@ -46,9 +48,14 @@ func _player_connected(id: int) -> void:
 func setup_world() -> void:
 	var new_main = MAIN.instantiate()
 	add_child(new_main)
-	lobby.visible = false
 
 
 func set_node_authority() -> void:
 	MultiplayerSingleton.spawner_node.set_multiplayer_authority(MultiplayerSingleton.player_2_id)
 	Singleton.player.set_multiplayer_authority(MultiplayerSingleton.player_1_id)
+
+
+func _on_singleplayer_pressed() -> void:
+	MultiplayerSingleton.is_singleplayer = true
+	setup_world()
+	lobby.visible = false

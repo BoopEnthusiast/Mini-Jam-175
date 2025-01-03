@@ -16,9 +16,12 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 	
-	var direction = Input.get_axis("left", "right")
-	position.x += direction * SPEED * delta
-	
-	if Input.is_action_just_pressed("jump_spawn"):
-		var new_block = SQUARE_BLOCK.instantiate()
+	if MultiplayerSingleton.is_singleplayer:
+		pass # TODO: move above player
 		
+	else:
+		var direction = Input.get_axis("left", "right")
+		position.x += direction * SPEED * delta
+		
+		if Input.is_action_just_pressed("jump_spawn"):
+			var new_block = SQUARE_BLOCK.instantiate()
