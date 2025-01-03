@@ -24,6 +24,10 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
     if not (body is Player):
         return
 
+    # Hits should have force.
+    if linear_velocity.length() < 50.0:
+        return
+
     var player: Player = body
     
     # Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
