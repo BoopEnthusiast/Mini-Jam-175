@@ -63,7 +63,7 @@ texture = SubResource("GradientTexture2D_w7l1g")
 position = Vector2(0, -521)
 script = ExtResource("1_njwkd")
 
-[node name="Sprite2D" type="Sprite2D" parent="Spawner"]
+[node name="Sprite" type="Sprite2D" parent="Spawner"]
 scale = Vector2(48, 48)
 texture = SubResource("PlaceholderTexture2D_cdotj")
 
