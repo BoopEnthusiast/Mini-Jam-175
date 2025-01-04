@@ -144,8 +144,8 @@ func setStateWallslide() -> void:
 			setStateAirborne()
 
 func faceDirection() -> void:
-	if direction == -1:
+	if Input.is_action_just_pressed("left"):
 		sprite.flip_h = true
-	else:
+	elif Input.is_action_just_pressed("right"):
 		sprite.flip_h = false
 		
