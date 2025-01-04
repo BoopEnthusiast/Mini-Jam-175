@@ -18,9 +18,6 @@ func _physics_process(delta):
 	var state := PhysicsServer2D.body_get_direct_state(get_rid())
 	var contact_count := state.get_contact_count()
 
-	# if contact_count == 0:
-	# 	position.x = move_toward(position.x, MultiplayerSingleton.spawner_node.position.x, delta * 1000.0)
-
 	if not has_hit_player:
 		for index in contact_count:
 			handle_collision(index, state)
