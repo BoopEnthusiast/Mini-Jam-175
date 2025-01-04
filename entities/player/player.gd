@@ -23,6 +23,7 @@ var has_double_jumped := false
 var has_pressed_jump := false
 var has_wall_jumped := false
 var can_take_damage := true
+var is_dashing := false
 
 var hearts_list : Array[TextureRect]
 
