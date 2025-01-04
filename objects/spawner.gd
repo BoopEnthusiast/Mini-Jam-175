@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		var direction = Input.get_axis("left", "right")
 		position.x = clamp(position.x + direction * SPEED * delta, -370, 370)
 		if can_spawn_block:
-			spawn_block()
+			rpc("spawn_block")
 
 
 func automatic_spawner(delta: float):
