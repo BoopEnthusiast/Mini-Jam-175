@@ -157,19 +157,18 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_dd8hb"]
-colors = PackedColorArray(0.836881, 0.719171, 0.971626, 1, 0.673699, 0.853528, 0.314814, 1)
+colors = PackedColorArray(0.973484, 0.702911, 0.642338, 1, 0.403523, 0.851603, 0.943185, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5mgjg"]
 gradient = SubResource("Gradient_dd8hb")
 use_hdr = true
-fill_from = Vector2(0.365036, 0.232073)
-fill_to = Vector2(0.634964, 0.767927)
+fill_from = Vector2(0.769028, 0.632756)
+fill_to = Vector2(0.230972, 0.367244)
 metadata/_snap_enabled = true
 metadata/_snap_count = 3
 
 [sub_resource type="GDScript" id="GDScript_5u6kl"]
-script/source = "@tool
-extends Sprite2D
+script/source = "extends Sprite2D
 
 
 

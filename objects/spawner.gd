@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		
 	else:
 		var direction = Input.get_axis("left", "right")
-		position.x += direction * SPEED * delta
+		position.x = clamp(position.x + direction * SPEED * delta, -370, 370)
 		if can_spawn_block:
 			spawn_block()
 
@@ -51,6 +51,7 @@ func automatic_spawner(delta: float):
 	position.x = move_toward(position.x, Singleton.player.position.x, SPEED * delta)
 
 
+@rpc("reliable", "any_peer", "call_remote")
 func spawn_block():
 	if not can_spawn_block:
 		return
