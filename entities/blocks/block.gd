@@ -5,8 +5,8 @@ const HIT_MIN_FORCE: float = 10000.0
 const HIT_MIN_DOT: float = 0.33
 
 var has_hit_player := false
+var force_applied := 0.0
 
-# TODO accumulate force applied to player
 
 func _ready() -> void:
 	set_multiplayer_authority(MultiplayerSingleton.player_1_id)
@@ -31,12 +31,22 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
 		return
 
 	var player: Player = state.get_contact_collider_object(contact_index)
-	
-	has_hit_player = true
-	player.health -= 1
+
+	var collision_force := player_collision_force(player)
+	force_applied += collision_force
+
+	if force_applied < HIT_MIN_FORCE:
+		return
 	
 	# Destroy after short delay for player to see the hit.
 	get_tree().create_timer(0.05).timeout.connect(queue_free)
+
+	# If the player can't be hit, just destroy the block.
+	if not player.can_take_damage:
+		return false
+
+	has_hit_player = true
+	player.health -= 1
 
 	# Apply screenshake
 	if Singleton.camera != null:
@@ -52,19 +62,15 @@ func is_valid_hit(contact_index: int, state: PhysicsDirectBodyState2D) -> bool:
 	var body := state.get_contact_collider_object(contact_index)
 	if not (body is Player):
 		return false
-
-	# If the player can't be hit, invalid hit.
-	if not body.can_take_damage:
-		return false
 	
 	# Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
 	if not is_collision_on_underside(contact_index, state):
 		return false
 	
-	# Hit must require a large amount of force to be appled to the player
-	var collision_force := player_collision_force(body)
-	if collision_force < HIT_MIN_FORCE:
-		return false
+	# # Hit must require a large amount of force to be appled to the player
+	# var collision_force := player_collision_force(body)
+	# if collision_force < HIT_MIN_FORCE:
+	# 	return false
 
 	# Hit should be a crush, so the player must be grounded.
 	#if not player.is_on_floor():
