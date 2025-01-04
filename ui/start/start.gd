@@ -2,7 +2,7 @@ class_name Start
 extends Node
 
 @onready var dropper_title := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/DropperTitle
-@onready var dropper_controlls := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control/DropperControlls
+@onready var dropper_controls := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control/DropperControls
 @onready var dropper_objective := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective/DropperObjective
 
 @onready var player_title := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/PlayerTitle
@@ -16,7 +16,7 @@ var show_dopper_guide := false:
 func set_show_dropper_guide(value: bool):
 	if value:
 		dropper_title.visible = true
-		dropper_controlls.visible = true
+		dropper_controls.visible = true
 		dropper_objective.visible = true
 
 		player_title.visible = false
@@ -24,7 +24,7 @@ func set_show_dropper_guide(value: bool):
 		player_objective.visible = false
 	else:
 		dropper_title.visible = false
-		dropper_controlls.visible = false
+		dropper_controls.visible = false
 		dropper_objective.visible = false
 
 		player_title.visible = true

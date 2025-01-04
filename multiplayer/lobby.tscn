@@ -337,7 +337,7 @@ theme_override_font_sizes/font_size = 48
 text = "Controls"
 horizontal_alignment = 1
 
-[node name="DropperControlls" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control"]
+[node name="DropperControls" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control"]
 visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("8_2tfuj")
