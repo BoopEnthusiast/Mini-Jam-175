@@ -25,17 +25,6 @@ var has_wall_jumped := false
 var can_take_damage := true
 
 var hearts_list : Array[TextureRect]
-var health := 3:
-	set(value):
-		if can_take_damage:
-			health = value
-			update_heart_display()
-			can_take_damage = false
-			i_frames.start()
-			if Singleton.camera != null:
-				Singleton.camera.add_trauma(1.0)
-		if health <= 0:
-			pass # TODO: Start end screen
 
 var direction := 0.0
 
@@ -44,6 +33,23 @@ var direction := 0.0
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hearts: HBoxContainer = $HealthLayer/Hearts
 @onready var i_frames: Timer = $IFrames
+@onready var i_frame_player: AnimationPlayer = $IFramePlayer
+
+# Health is dependent on the nodes, so must be @onready
+@onready var health := 3:
+	set(value):
+		print(can_take_damage)
+		if can_take_damage:
+			health = value
+			update_heart_display()
+			can_take_damage = false
+			print(i_frames)
+			i_frames.start()
+			i_frame_player.play("i_frames")
+			if Singleton.camera != null:
+				Singleton.camera.add_trauma(1.0)
+		if health <= 0:
+			pass # TODO: Start end screen
 
 
 func _enter_tree() -> void:
@@ -154,4 +160,6 @@ func faceDirection() -> void:
 
 
 func _on_i_frames_timeout() -> void:
+	print("I frames over")
 	can_take_damage = true
+	i_frame_player.stop()
