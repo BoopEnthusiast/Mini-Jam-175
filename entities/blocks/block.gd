@@ -6,6 +6,7 @@ const HIT_MIN_DOT: float = 0.33
 
 var has_hit_player := false
 
+# TODO accumulate force applied to player
 
 func _ready() -> void:
 	set_multiplayer_authority(MultiplayerSingleton.player_1_id)
@@ -13,11 +14,14 @@ func _ready() -> void:
 		process_mode = PROCESS_MODE_DISABLED
 
 
-func _physics_process(_delta):
-	if not has_hit_player:
-		var state := PhysicsServer2D.body_get_direct_state(get_rid())
-		var contact_count := state.get_contact_count()
+func _physics_process(delta):
+	var state := PhysicsServer2D.body_get_direct_state(get_rid())
+	var contact_count := state.get_contact_count()
 
+	# if contact_count == 0:
+	# 	position.x = move_toward(position.x, MultiplayerSingleton.spawner_node.position.x, delta * 1000.0)
+
+	if not has_hit_player:
 		for index in contact_count:
 			handle_collision(index, state)
 
@@ -48,6 +52,10 @@ func is_valid_hit(contact_index: int, state: PhysicsDirectBodyState2D) -> bool:
 	var body := state.get_contact_collider_object(contact_index)
 	if not (body is Player):
 		return false
+
+	# If the player can't be hit, invalid hit.
+	if not body.can_take_damage:
+		return false
 	
 	# Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
 	if not is_collision_on_underside(contact_index, state):
@@ -69,19 +77,24 @@ func player_collision_force(player: Player) -> float:
 	const PLAYER_MASS: float = 1.0
 	const IMPULSE_DELTA: float = 0.01 # every collision should have a static time
 
+	var player_velocity := Vector2.ZERO
+	# var player_velocity := player.velocity
+
 	# Calculate the resulting player velocity from the collision
 	# From https://en.wikipedia.org/wiki/Elastic_collision#Two-dimensional
 	var eq_mass := (2 * mass) / (PLAYER_MASS + mass)
-	var eq_vel_dot := (player.velocity - linear_velocity).dot(player.global_position - global_position)
+	var eq_vel_dot := (player_velocity - linear_velocity).dot(player.global_position - global_position)
 	var eq_pos_len_sq := (player.global_position - global_position).length_squared()
 	var eq_pos := player.global_position - global_position
-	var player_velocity_result := player.velocity - eq_mass * (eq_vel_dot / eq_pos_len_sq) * eq_pos
+	var player_velocity_result := player_velocity - eq_mass * (eq_vel_dot / eq_pos_len_sq) * eq_pos
 
 	# Calulcate the impulse from the change in velocity and the force required to cause that impulse
 	# From https://en.wikipedia.org/wiki/Impulse_(physics)
 	var player_momentum := player.velocity * PLAYER_MASS
 	var player_momentum_result := player_velocity_result * PLAYER_MASS
 	var player_force := (player_momentum_result - player_momentum) / IMPULSE_DELTA
+
+	print("Hit force: ", player_force.length())
 	
 	return player_force.length()
 
