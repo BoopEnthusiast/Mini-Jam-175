@@ -47,8 +47,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
-	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
+	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer) # FOR SOME REASON THE GAME BREAKS WHEN I REMOVE THIS
 	
 	# Get displayed hearts
 	for child in hearts.get_children():
