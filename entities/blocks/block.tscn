@@ -63,12 +63,10 @@ max_contacts_reported = 32
 script = ExtResource("1_d5cqp")
 
 [node name="ColliderPolygon" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2, 2)
 polygon = PackedVector2Array(0, 0, 0.035, 0.115, 0.135, 0.06)
 script = SubResource("GDScript_bqjct")
 
 [node name="CutoutPolygon" type="Polygon2D" parent="."]
-scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_uo6tr")
 script = SubResource("GDScript_iueop")
 

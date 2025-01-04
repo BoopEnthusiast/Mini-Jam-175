@@ -53,6 +53,9 @@ func setup_world() -> void:
 
 
 func set_node_authority() -> void:
+	print("Setting node authority")
+	print(MultiplayerSingleton.player_2_id,"   ",MultiplayerSingleton.player_1_id)
+	print(multiplayer.get_unique_id())
 	MultiplayerSingleton.spawner_node.set_multiplayer_authority(MultiplayerSingleton.player_2_id)
 	Singleton.player.set_multiplayer_authority(MultiplayerSingleton.player_1_id)
 

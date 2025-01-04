@@ -56,6 +56,7 @@ func is_valid_hit(contact_index: int, state: PhysicsDirectBodyState2D) -> bool:
 	# Hit must require a large amount of force to be appled to the player
 	var collision_force := player_collision_force(body)
 	if collision_force < HIT_MIN_FORCE:
+		# print("Collision force not large enough: ", collision_force)
 		return false
 
 	# Hit should be a crush, so the player must be grounded.

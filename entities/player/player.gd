@@ -33,6 +33,7 @@ var health := 3:
 				Singleton.camera.add_trauma(1.0)
 		else:
 			pass # TODO: Start end screen
+
 var direction := 0.0
 
 @onready var coyote_time: Timer = $CoyoteTime
@@ -46,6 +47,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
+	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
 	
 	# Get displayed hearts
 	for child in hearts.get_children():
