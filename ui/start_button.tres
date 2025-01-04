@@ -1,48 +1,46 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://48jchftjojj3"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://48jchftjojj3"]
 
 [ext_resource type="FontVariation" uid="uid://cgec6gc2bw2pr" path="res://ui/fonts/Nunito_700.tres" id="1_jlk55"]
-
-[sub_resource type="Gradient" id="Gradient_8lky6"]
-colors = PackedColorArray(0.234603, 0.395696, 0.446276, 1, 0.302702, 0.401047, 0.269723, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wdkpv"]
-gradient = SubResource("Gradient_8lky6")
-fill_to = Vector2(1, 1)
+[ext_resource type="Texture2D" uid="uid://d1sw205dkaaxj" path="res://ui/icons/button_disabled.png" id="2_bx5ma"]
+[ext_resource type="Texture2D" uid="uid://dn2riak3kt28l" path="res://ui/icons/button_focus.png" id="3_1miqb"]
+[ext_resource type="Texture2D" uid="uid://b0k8johd2bq3p" path="res://ui/icons/button_hover.png" id="3_hi5xu"]
+[ext_resource type="Texture2D" uid="uid://byloigddcmadn" path="res://ui/icons/button_normal.png" id="4_3ugsq"]
+[ext_resource type="Texture2D" uid="uid://3m650rjg7jda" path="res://ui/icons/button_press.png" id="5_8gps3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uddg"]
-texture = SubResource("GradientTexture2D_wdkpv")
+texture = ExtResource("2_bx5ma")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
-[sub_resource type="Gradient" id="Gradient_12ehn"]
-colors = PackedColorArray(0.735395, 0.924923, 0.987563, 1, 0.725235, 0.968288, 0.643066, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ly2b3"]
-gradient = SubResource("Gradient_12ehn")
-use_hdr = true
-fill_to = Vector2(1, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fnix"]
+texture = ExtResource("3_1miqb")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijwma"]
-texture = SubResource("GradientTexture2D_ly2b3")
-
-[sub_resource type="Gradient" id="Gradient_01cna"]
-colors = PackedColorArray(0.4512, 0.84128, 0.96, 1, 0.542635, 0.881193, 0.418778, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dvi23"]
-gradient = SubResource("Gradient_01cna")
-fill_to = Vector2(1, 1)
+texture = ExtResource("3_hi5xu")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_857bg"]
-texture = SubResource("GradientTexture2D_dvi23")
-
-[sub_resource type="Gradient" id="Gradient_ej22i"]
-interpolation_color_space = 2
-colors = PackedColorArray(0.185075, 0.625587, 0.743319, 1, 0.383759, 0.646313, 0.286445, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0o74e"]
-gradient = SubResource("Gradient_ej22i")
-fill_to = Vector2(1, 1)
+texture = ExtResource("4_3ugsq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdrla"]
-texture = SubResource("GradientTexture2D_0o74e")
+texture = ExtResource("5_8gps3")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 0.960784)
@@ -65,7 +63,7 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_jlk55")
 Button/styles/disabled = SubResource("StyleBoxTexture_4uddg")
-Button/styles/focus = null
+Button/styles/focus = SubResource("StyleBoxTexture_7fnix")
 Button/styles/hover = SubResource("StyleBoxTexture_ijwma")
 Button/styles/normal = SubResource("StyleBoxTexture_857bg")
 Button/styles/pressed = SubResource("StyleBoxTexture_vdrla")
