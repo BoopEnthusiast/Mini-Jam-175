@@ -94,7 +94,11 @@ func _physics_process(delta: float) -> void:
 		can_dash = false
 		
 		var input_direction := Input.get_axis("left", "right")
-		dash_direction = Vector2.LEFT if input_direction < 0.0 else Vector2.RIGHT
+		if input_direction == 0.0:
+			dash_direction = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
+		else:
+			dash_direction = Vector2.LEFT if input_direction < 0.0 else Vector2.RIGHT
+			
 		velocity.x = dash_direction.x * SPEED * 2.0
 	
 	# Handle jump. Only set if is the authority
