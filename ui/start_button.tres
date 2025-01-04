@@ -1,0 +1,71 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://48jchftjojj3"]
+
+[ext_resource type="FontVariation" uid="uid://cgec6gc2bw2pr" path="res://ui/fonts/Nunito_700.tres" id="1_jlk55"]
+
+[sub_resource type="Gradient" id="Gradient_8lky6"]
+colors = PackedColorArray(0.234603, 0.395696, 0.446276, 1, 0.302702, 0.401047, 0.269723, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wdkpv"]
+gradient = SubResource("Gradient_8lky6")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uddg"]
+texture = SubResource("GradientTexture2D_wdkpv")
+
+[sub_resource type="Gradient" id="Gradient_12ehn"]
+colors = PackedColorArray(0.735395, 0.924923, 0.987563, 1, 0.725235, 0.968288, 0.643066, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ly2b3"]
+gradient = SubResource("Gradient_12ehn")
+use_hdr = true
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijwma"]
+texture = SubResource("GradientTexture2D_ly2b3")
+
+[sub_resource type="Gradient" id="Gradient_01cna"]
+colors = PackedColorArray(0.4512, 0.84128, 0.96, 1, 0.542635, 0.881193, 0.418778, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dvi23"]
+gradient = SubResource("Gradient_01cna")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_857bg"]
+texture = SubResource("GradientTexture2D_dvi23")
+
+[sub_resource type="Gradient" id="Gradient_ej22i"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.185075, 0.625587, 0.743319, 1, 0.383759, 0.646313, 0.286445, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0o74e"]
+gradient = SubResource("Gradient_ej22i")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdrla"]
+texture = SubResource("GradientTexture2D_0o74e")
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_focus_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_hover_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_outline_color = Color(0, 0, 0, 0.960784)
+Button/colors/font_pressed_color = Color(0, 0, 0, 0.960784)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_jlk55")
+Button/styles/disabled = SubResource("StyleBoxTexture_4uddg")
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxTexture_ijwma")
+Button/styles/normal = SubResource("StyleBoxTexture_857bg")
+Button/styles/pressed = SubResource("StyleBoxTexture_vdrla")
