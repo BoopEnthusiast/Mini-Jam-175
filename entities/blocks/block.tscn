@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd5ndsnj8xpr1"]
+[gd_scene load_steps=7 format=3 uid="uid://bd5ndsnj8xpr1"]
 
 [ext_resource type="Script" path="res://entities/blocks/block.gd" id="1_d5cqp"]
 
@@ -48,6 +48,14 @@ func _ready() -> void:
 		texture.gradient.set_color(i, Color.from_ok_hsl(hue + (float(i) / 2), S, L))
 "
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_av66w"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
 [node name="Block" type="RigidBody2D"]
 script = ExtResource("1_d5cqp")
 
@@ -58,3 +66,6 @@ script = SubResource("GDScript_bqjct")
 [node name="CutoutPolygon" type="Polygon2D" parent="."]
 texture = SubResource("GradientTexture2D_uo6tr")
 script = SubResource("GDScript_iueop")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_av66w")

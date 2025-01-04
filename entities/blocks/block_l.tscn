@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dluyc32yarduc"]
+
+[ext_resource type="PackedScene" uid="uid://bd5ndsnj8xpr1" path="res://entities/blocks/block.tscn" id="1_u5vih"]
+
+[node name="Block" instance=ExtResource("1_u5vih")]
+
+[node name="CutoutPolygon" parent="." index="1"]
+polygon = PackedVector2Array(-32, -48, 0, -48, 0, 16, 32, 16, 32, 48, 0, 48, -32, 48)

@@ -2,13 +2,6 @@ class_name Spawner
 extends Marker2D
 
 
-const BLOCKS = [
-	preload("res://entities/blocks/SquareBlock.tscn"),
-	preload("res://entities/blocks/LineBlock.tscn"),
-	preload("res://entities/blocks/TBlock.tscn"),
-	preload("res://entities/blocks/LBlock.tscn"),
-	preload("res://entities/blocks/ZBlock.tscn"),
-]
 const SPEED = 100.0
 
 @onready var spawn_timer: Timer = $Timer
@@ -60,8 +53,8 @@ func spawn_block():
 	if MultiplayerSingleton.is_singleplayer:
 		can_spawn_block = false
 		
-		var block_index := randi_range(0, BLOCKS.size() - 1)
-		var new_block = BLOCKS[block_index].instantiate()
+		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
+		var new_block = Singleton.main_node.BLOCKS[block_index].instantiate()
 		
 		new_block.global_position = global_position
 		
@@ -72,7 +65,7 @@ func spawn_block():
 		Singleton.main_node.add_child(new_block)
 	
 	else:
-		var block_index := randi_range(0, BLOCKS.size() - 1)
+		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
 		
 		var block_global_position = global_position
 		

@@ -3,11 +3,11 @@ extends Node2D
 
 
 const BLOCKS = [
-	preload("res://entities/blocks/SquareBlock.tscn"),
-	preload("res://entities/blocks/LineBlock.tscn"),
-	preload("res://entities/blocks/TBlock.tscn"),
-	preload("res://entities/blocks/LBlock.tscn"),
-	preload("res://entities/blocks/ZBlock.tscn"),
+	preload("res://entities/blocks/block_l.tscn"),
+	preload("res://entities/blocks/block_line.tscn"),
+	preload("res://entities/blocks/block_square.tscn"),
+	preload("res://entities/blocks/block_t.tscn"),
+	preload("res://entities/blocks/block_z.tscn"),
 ]
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
