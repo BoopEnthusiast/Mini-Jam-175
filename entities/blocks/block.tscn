@@ -72,3 +72,4 @@ script = SubResource("GDScript_iueop")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_av66w")
+visibility_update_mode = 1

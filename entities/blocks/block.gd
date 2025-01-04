@@ -9,6 +9,8 @@ var has_hit_player := false
 
 func _ready() -> void:
 	set_multiplayer_authority(MultiplayerSingleton.player_1_id)
+	if not multiplayer.is_server():
+		process_mode = PROCESS_MODE_DISABLED
 
 
 func _physics_process(_delta):
