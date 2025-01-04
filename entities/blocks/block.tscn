@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd5ndsnj8xpr1"]
+
+[ext_resource type="Script" path="res://entities/blocks/block.gd" id="1_d5cqp"]
+
+[sub_resource type="GDScript" id="GDScript_bqjct"]
+script/source = "extends CollisionPolygon2D
+
+
+@onready var cutout_polygon: Polygon2D = $\"../CutoutPolygon\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	assert(polygon.size() <= 3, \"You set the block's ColliderPolygon, please set only the CutoutPolygon's polygon. You can copy over the data easily.\")
+	assert(cutout_polygon.polygon.size() > 0, \"You have not made a polygon on the CutoutPolygon for a block\")
+	polygon = cutout_polygon.polygon
+"
+
+[sub_resource type="Gradient" id="Gradient_g01wj"]
+offsets = PackedFloat32Array(0, 0.992958)
+colors = PackedColorArray(0.317596, 0.880864, 0.820133, 1, 0.531992, 0.882819, 0.429498, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uo6tr"]
+gradient = SubResource("Gradient_g01wj")
+use_hdr = true
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="GDScript" id="GDScript_iueop"]
+script/source = "extends Polygon2D
+
+
+const S = 0.8
+const L = 0.8
+
+
+func _ready() -> void:
+	texture = texture.duplicate() as GradientTexture2D
+	texture.gradient = texture.gradient.duplicate()
+	if randf() > 0.5:
+		texture.fill_from = Vector2(randf(), 0)
+		texture.fill_to = Vector2(randf(), 1)
+	else:
+		texture.fill_from = Vector2(0, randf())
+		texture.fill_to = Vector2(1, randf())
+	for i in range(2):
+		var hue = randf()
+		texture.gradient.set_color(i, Color.from_ok_hsl(hue + (float(i) / 2), S, L))
+"
+
+[node name="Block" type="RigidBody2D"]
+script = ExtResource("1_d5cqp")
+
+[node name="ColliderPolygon" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 0.035, 0.115, 0.135, 0.06)
+script = SubResource("GDScript_bqjct")
+
+[node name="CutoutPolygon" type="Polygon2D" parent="."]
+texture = SubResource("GradientTexture2D_uo6tr")
+polygon = PackedVector2Array(-40, -31, -39, 29, 58, 40, 54, -18)
+script = SubResource("GDScript_iueop")
