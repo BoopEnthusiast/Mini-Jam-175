@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		has_wall_jumped = false
 	
 	# Handle dash
-	if Input.is_action_just_pressed("dash") && can_dash:
+	if Input.is_action_just_pressed("dash") and can_dash:
 		dash_duration_timer.start()
 		is_dashing = true
 		can_dash = false
