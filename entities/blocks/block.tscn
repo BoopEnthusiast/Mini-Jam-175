@@ -57,5 +57,4 @@ script = SubResource("GDScript_bqjct")
 
 [node name="CutoutPolygon" type="Polygon2D" parent="."]
 texture = SubResource("GradientTexture2D_uo6tr")
-polygon = PackedVector2Array(-40, -31, -39, 29, 58, 40, 54, -18)
 script = SubResource("GDScript_iueop")
