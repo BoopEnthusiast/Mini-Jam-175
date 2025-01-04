@@ -22,16 +22,19 @@ var was_on_floor := false
 var has_double_jumped := false
 var has_pressed_jump := false
 var has_wall_jumped := false
+var can_take_damage := true
 
 var hearts_list : Array[TextureRect]
 var health := 3:
 	set(value):
-		if value > 0:
+		if can_take_damage:
 			health = value
 			update_heart_display()
+			can_take_damage = false
+			i_frames.start()
 			if Singleton.camera != null:
 				Singleton.camera.add_trauma(1.0)
-		else:
+		if health <= 0:
 			pass # TODO: Start end screen
 
 var direction := 0.0
@@ -40,6 +43,7 @@ var direction := 0.0
 @onready var jump_buffer: Timer = $JumpBuffer
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hearts: HBoxContainer = $HealthLayer/Hearts
+@onready var i_frames: Timer = $IFrames
 
 
 func _enter_tree() -> void:
@@ -147,3 +151,7 @@ func faceDirection() -> void:
 	elif Input.is_action_just_pressed("right"):
 		sprite.flip_h = false
 		
+
+
+func _on_i_frames_timeout() -> void:
+	can_take_damage = true

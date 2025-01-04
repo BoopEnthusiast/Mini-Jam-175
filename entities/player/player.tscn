@@ -215,6 +215,11 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
+[node name="IFrames" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_vppgw")
 
@@ -250,3 +255,5 @@ texture = ExtResource("3_rgi6r")
 custom_minimum_size = Vector2(1.005, 0)
 layout_mode = 2
 texture = ExtResource("3_rgi6r")
+
+[connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
