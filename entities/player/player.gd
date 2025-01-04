@@ -23,12 +23,17 @@ var has_double_jumped := false
 var has_pressed_jump := false
 var has_wall_jumped := false
 var can_take_damage := true
-var is_dashing := false
 
-var hearts_list : Array[TextureRect]
+var can_dash := true
+var is_dashing := false
+var dash_direction := Vector2.ZERO
+
+var hearts_list: Array[TextureRect]
 
 var direction := 0.0
 
+@onready var dash_recharge_timer: Timer = $DashRechargeTimer
+@onready var dash_duration_timer: Timer = $DashDurationTimer
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -82,6 +87,16 @@ func _physics_process(delta: float) -> void:
 		has_double_jumped = false
 		has_wall_jumped = false
 	
+	# Handle dash
+	if Input.is_action_just_pressed("dash") && can_dash:
+		dash_duration_timer.start()
+		is_dashing = true
+		can_dash = false
+		
+		var input_direction := Input.get_axis("left", "right")
+		dash_direction = Vector2.LEFT if input_direction < 0.0 else Vector2.RIGHT
+		velocity.x = dash_direction.x * SPEED * 2.0
+	
 	# Handle jump. Only set if is the authority
 	if Input.is_action_just_pressed("jump_spawn"):
 		if is_on_floor() or not coyote_time.is_stopped():
@@ -98,13 +113,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			jump_buffer.start()
 	
-	# Get the input direction and handle the movement/deceleration. Only set if is the authority
-	direction = Input.get_axis("left", "right")
-	
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCEL)
-	else:
-		velocity.x = move_toward(velocity.x, 0, ACCEL)
+	if not is_dashing:
+		# Get the input direction and handle the movement/deceleration. Only set if is the authority
+		direction = Input.get_axis("left", "right")
+		
+		if direction:
+			velocity.x = move_toward(velocity.x, direction * SPEED, ACCEL)
+		else:
+			velocity.x = move_toward(velocity.x, 0, ACCEL)
 	
 	was_on_floor = is_on_floor()
 	
@@ -163,3 +179,10 @@ func _on_i_frames_timeout() -> void:
 	print("I frames over")
 	can_take_damage = true
 	i_frame_player.stop()
+
+func _on_dash_duration_timeout() -> void:
+	is_dashing = false
+	dash_recharge_timer.start()
+
+func _on_dash_recharge_timeout() -> void:
+	can_dash = true
