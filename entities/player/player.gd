@@ -55,7 +55,7 @@ var direction := 0.0
 			if Singleton.camera != null:
 				Singleton.camera.add_trauma(1.0)
 		if health <= 0:
-			pass # TODO: Start end screen
+			get_tree().change_scene_to_file("res://worlds/SpawnerWon.tscn")
 
 
 func _enter_tree() -> void:
@@ -92,6 +92,8 @@ func _physics_process(delta: float) -> void:
 		dash_duration_timer.start()
 		is_dashing = true
 		can_dash = false
+		
+		setStateDashing()
 		
 		var input_direction := Input.get_axis("left", "right")
 		if input_direction == 0.0:
@@ -179,6 +181,14 @@ func setStateWallslide() -> void:
 		if is_on_floor():
 			setStateGrounded()
 		elif not is_on_wall():
+			setStateAirborne()
+			
+func setStateDashing() -> void:
+	sprite.play("dash")
+	
+	print("AAAAAAHHHH")
+	checkState = func():
+		if not is_dashing:
 			setStateAirborne()
 
 func faceDirection() -> void:

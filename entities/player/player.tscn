@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=33 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
+[ext_resource type="Texture2D" uid="uid://cpmanm5be6exi" path="res://entities/player/spr_player_dash.png" id="2_lfacv"]
 [ext_resource type="Texture2D" uid="uid://dkllnwvkuvugn" path="res://entities/player/spr_player_idle.png" id="2_wa8a7"]
 [ext_resource type="Texture2D" uid="uid://dtbghds6wdwbi" path="res://entities/player/spr_player_fall.png" id="3_rgi6r"]
 [ext_resource type="Texture2D" uid="uid://didn7tr02mvla" path="res://entities/player/spr_player_land-Sheet.png" id="4_jninj"]
@@ -28,6 +29,10 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath(".:health")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4xmh"]
+atlas = ExtResource("2_lfacv")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ep80b"]
 atlas = ExtResource("2_wa8a7")
@@ -87,6 +92,14 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7o3ho"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4xmh")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ep80b")
@@ -241,6 +254,7 @@ clip_children = 2
 texture_filter = 1
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_7o3ho")
+animation = &"dash"
 autoplay = "default"
 
 [node name="Gradient" type="Sprite2D" parent="Sprite"]
