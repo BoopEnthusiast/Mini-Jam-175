@@ -5,7 +5,7 @@ const HIT_MIN_FORCE: float = 10000.0
 const HIT_MIN_DOT: float = 0.33
 
 var has_hit_player := false
-var force_applied := 0.0
+var total_force_applied := 0.0
 
 
 func _ready() -> void:
@@ -24,17 +24,28 @@ func _physics_process(delta):
 
 
 func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
+	# If the hit isn't on the player, invalid hit.
+	var body := state.get_contact_collider_object(contact_index)
+	if not (body is Player):
+		return false
+	var player: Player = body
+
+	# If the player is dashing, destroy the block
+	if player.is_dashing:
+		queue_free()
+		return
+
 	if not is_valid_hit(contact_index, state):
 		return
 
-	var player: Player = state.get_contact_collider_object(contact_index)
-
+	# Calculate the force applied by the block to the player
 	var collision_force := player_collision_force(player)
-	force_applied += collision_force
-
-	if force_applied < HIT_MIN_FORCE:
+	total_force_applied += collision_force
+	if total_force_applied < HIT_MIN_FORCE:
 		return
-	
+
+	# Valid hit
+
 	# Destroy after short delay for player to see the hit.
 	get_tree().create_timer(0.05).timeout.connect(queue_free)
 
@@ -50,24 +61,10 @@ func is_valid_hit(contact_index: int, state: PhysicsDirectBodyState2D) -> bool:
 	# If the block has already hit the player, invalid hit.
 	if has_hit_player:
 		return false
-
-	# If the hit isn't on the player, invalid hit.
-	var body := state.get_contact_collider_object(contact_index)
-	if not (body is Player):
-		return false
 	
 	# Hit must be on the underside of the block, e.g. player jumping on top doesn't count.
 	if not is_collision_on_underside(contact_index, state):
 		return false
-	
-	# # Hit must require a large amount of force to be appled to the player
-	# var collision_force := player_collision_force(body)
-	# if collision_force < HIT_MIN_FORCE:
-	# 	return false
-
-	# Hit should be a crush, so the player must be grounded.
-	#if not player.is_on_floor():
-	#    return
 	
 	return true
 
@@ -76,6 +73,7 @@ func player_collision_force(player: Player) -> float:
 	const PLAYER_MASS: float = 1.0
 	const IMPULSE_DELTA: float = 0.01 # every collision should have a static time
 
+	# Ignore player velocity to normalize force calculated
 	var player_velocity := Vector2.ZERO
 	# var player_velocity := player.velocity
 
