@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			dash_direction = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
 		else:
 			dash_direction = Vector2.LEFT if input_direction < 0.0 else Vector2.RIGHT
-			
+		
 		velocity.x = dash_direction.x * SPEED * 2.0
 	
 	# Handle jump. Only set if is the authority
@@ -129,6 +129,15 @@ func _physics_process(delta: float) -> void:
 	was_on_floor = is_on_floor()
 	
 	move_and_slide()
+
+	# Handle collisions with blocks while dashing
+	if is_dashing:
+		for index in get_slide_collision_count():
+			var collision := get_slide_collision(index)
+			var body: Object = collision.get_collider_shape().get_parent()
+			if body is Block:
+				var block: Block = body
+				block.queue_free()
 	
 	checkState.call()
 
@@ -185,6 +194,7 @@ func _on_i_frames_timeout() -> void:
 	i_frame_player.stop()
 
 func _on_dash_duration_timeout() -> void:
+	print("Dash ended")
 	is_dashing = false
 	dash_recharge_timer.start()
 

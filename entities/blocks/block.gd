@@ -30,11 +30,6 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
 		return false
 	var player: Player = body
 
-	# If the player is dashing, destroy the block
-	if player.is_dashing:
-		queue_free()
-		return
-
 	if not is_valid_hit(contact_index, state):
 		return
 
