@@ -33,6 +33,12 @@ grow_vertical = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Lobby/LobbyContainer"]
 layout_mode = 2
 
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Lobby/LobbyContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 97.335)
+layout_mode = 2
+theme = ExtResource("1_4cnto")
+placeholder_text = "Port"
+
 [node name="IPEnter" type="TextEdit" parent="CanvasLayer/Lobby/LobbyContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
