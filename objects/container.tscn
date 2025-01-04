@@ -3,27 +3,34 @@
 [ext_resource type="Script" path="res://objects/spawner.gd" id="1_njwkd"]
 
 [sub_resource type="Gradient" id="Gradient_k0pck"]
-colors = PackedColorArray(0.453526, 0.840693, 0.958384, 1, 0.542635, 0.881193, 0.418778, 1)
+offsets = PackedFloat32Array(0.00364964, 1)
+colors = PackedColorArray(0.976944, 0.682097, 0.769168, 1, 0.948105, 0.741725, 0.37285, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m2n45"]
 gradient = SubResource("Gradient_k0pck")
-fill_to = Vector2(0.990826, 0.678899)
+fill_to = Vector2(1, 0.666667)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
 
 [sub_resource type="Gradient" id="Gradient_8gmc1"]
 offsets = PackedFloat32Array(0, 0.518072, 1)
-colors = PackedColorArray(0.542635, 0.881193, 0.418778, 1, 0.467782, 0.837514, 0.961556, 1, 0.976944, 0.682097, 0.769168, 1)
+colors = PackedColorArray(0.948105, 0.741725, 0.37285, 1, 0.372651, 0.893297, 0.647901, 1, 0.579082, 0.810449, 0.974828, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w3e5m"]
 gradient = SubResource("Gradient_8gmc1")
-fill_from = Vector2(0, 0.43913)
-fill_to = Vector2(1, 0.426087)
+fill_from = Vector2(0, 0.333333)
+fill_to = Vector2(1, 0.333333)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
 
 [sub_resource type="Gradient" id="Gradient_cs6ya"]
-colors = PackedColorArray(0.976944, 0.682097, 0.769168, 1, 0.925984, 0.755357, 0.332448, 1)
+colors = PackedColorArray(0.579082, 0.810449, 0.974828, 1, 0.898724, 0.69335, 0.945552, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w7l1g"]
 gradient = SubResource("Gradient_cs6ya")
-fill_from = Vector2(0, 0.682609)
+fill_from = Vector2(0, 0.666667)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cdotj"]
 
