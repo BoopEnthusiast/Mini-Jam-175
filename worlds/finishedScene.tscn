@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=3 uid="uid://dn6jgulxwgtb6"]
+
+[ext_resource type="Theme" uid="uid://48jchftjojj3" path="res://ui/start_button.tres" id="1_t8mc3"]
+[ext_resource type="Script" path="res://worlds/finished_scene.gd" id="1_y6fb5"]
+[ext_resource type="Texture2D" uid="uid://didn7tr02mvla" path="res://entities/player/spr_player_land-Sheet.png" id="2_a3blm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7psyl"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms4b2"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8dv"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1u2w"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3x3c"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnge5"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cs4g"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7uqh"]
+atlas = ExtResource("2_a3blm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvrwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7psyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms4b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1u2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3x3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cs4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7uqh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y6fb5")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_right = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="labelContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/labelContainer"]
+layout_mode = 2
+theme = ExtResource("1_t8mc3")
+theme_override_font_sizes/font_size = 40
+text = "Slime won!
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer"]
+position = Vector2(239, 102)
+scale = Vector2(7.19531, 6.21875)
+sprite_frames = SubResource("SpriteFrames_mvrwu")
+autoplay = "default"
+
+[node name="QuitContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="GridContainer/MarginContainer/VBoxContainer/QuitContainer"]
+layout_mode = 2
+theme = ExtResource("1_t8mc3")
+
+[node name="Label" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/QuitContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t8mc3")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+text = "Quit Game
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="GridContainer/MarginContainer/VBoxContainer/QuitContainer/QuitButton" to="." method="_on_quit_button_pressed"]
