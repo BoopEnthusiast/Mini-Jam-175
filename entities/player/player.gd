@@ -34,7 +34,7 @@ var health := 3:
 		else:
 			pass # TODO: Start end screen
 
-var direction := 0
+var direction := 0.0
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
