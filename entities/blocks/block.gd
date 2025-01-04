@@ -48,10 +48,6 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
 	has_hit_player = true
 	player.health -= 1
 
-	# Apply screenshake
-	if Singleton.camera != null:
-		Singleton.camera.add_trauma(2.0)
-
 
 func is_valid_hit(contact_index: int, state: PhysicsDirectBodyState2D) -> bool:
 	# If the block has already hit the player, invalid hit.
