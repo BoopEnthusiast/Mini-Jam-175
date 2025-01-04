@@ -1,7 +1,7 @@
 class_name Block
 extends RigidBody2D
 
-const HIT_MIN_FORCE: float = 15000.0
+const HIT_MIN_FORCE: float = 10000.0
 const HIT_MIN_DOT: float = 0.33
 
 var has_hit_player := false
