@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkdhc8gojlk4u"]
+[gd_scene load_steps=10 format=3 uid="uid://bkdhc8gojlk4u"]
 
 [ext_resource type="Theme" uid="uid://by4asbf8mj04j" path="res://multiplayer/LobbyTheme.tres" id="1_4cnto"]
 [ext_resource type="Script" path="res://multiplayer/lobby.gd" id="1_7m7tk"]
@@ -6,6 +6,11 @@
 [ext_resource type="Theme" uid="uid://48jchftjojj3" path="res://ui/start_button.tres" id="4_vc1ju"]
 [ext_resource type="Theme" uid="uid://c1p5btbr58bq6" path="res://ui/line_edit.tres" id="5_5m3vp"]
 [ext_resource type="Texture2D" uid="uid://d3hudqjfnrky8" path="res://entities/player/spr_player_rise.png" id="6_ug4tc"]
+[ext_resource type="Script" path="res://ui/start/start.gd" id="7_n5de2"]
+[ext_resource type="FontVariation" uid="uid://bacvn7mvepoc2" path="res://ui/fonts/Nunito_500.tres" id="8_2tfuj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owih4"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_7m7tk")
@@ -232,6 +237,157 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_ug4tc")
 stretch_mode = 2
 
+[node name="Start" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_owih4")
+script = ExtResource("7_n5de2")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Start"]
+layout_mode = 2
+columns = 3
+
+[node name="LeftColumn" type="Control" parent="CanvasLayer/Start/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterColumn" type="Control" parent="CanvasLayer/Start/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Start/GridContainer/CenterColumn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+
+[node name="DropperTitle" type="Label" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7w7t")
+theme_override_font_sizes/font_size = 64
+text = "Block Dropper Guide"
+horizontal_alignment = 1
+
+[node name="PlayerTitle" type="Label" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7w7t")
+theme_override_font_sizes/font_size = 64
+text = "Player Guide"
+horizontal_alignment = 1
+
+[node name="Objective" type="VBoxContainer" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ObjectiveTitle" type="Label" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7w7t")
+theme_override_font_sizes/font_size = 48
+text = "Objective"
+horizontal_alignment = 1
+
+[node name="DropperObjective" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_2tfuj")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[ul][font_size=36][center]Drop blocks to crush or trap the player[/center][/font_size][/ul]
+"
+fit_content = true
+
+[node name="PlayerObjective" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_2tfuj")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[font_size=36][center][ul]Avoid getting crushed or traped by falling blocks
+Reach the top of the arena[/ul][/center][/font_size]"
+fit_content = true
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlsTitle" type="Label" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7w7t")
+theme_override_font_sizes/font_size = 48
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="DropperControlls" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_2tfuj")
+theme_override_fonts/bold_font = ExtResource("3_b7w7t")
+bbcode_enabled = true
+text = "[center][font_size=36][b]A,D / Left Joystick : [/b] Move Dropper[/font_size][/center]"
+fit_content = true
+
+[node name="PlayerControls" type="RichTextLabel" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control"]
+layout_mode = 2
+theme_override_constants/line_separation = 16
+theme_override_fonts/normal_font = ExtResource("8_2tfuj")
+theme_override_fonts/bold_font = ExtResource("3_b7w7t")
+bbcode_enabled = true
+text = "[center][font_size=36][b]A,D / Joystick Left: [/b] Move
+[b]W / Space / [img]ui/icons/Xbox_A.png[/img] / [img]ui/icons/PS_Cross.png[/img] : [/b] Jump
+[b]Jump in Air : [/b] Double jump
+[b]Jump on Wall : [/b] Wall jump
+[/font_size][/center]"
+fit_content = true
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_vc1ju")
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_right = 24.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.980392)
+theme_override_fonts/font = ExtResource("3_b7w7t")
+theme_override_font_sizes/font_size = 36
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightColumn" type="Control" parent="CanvasLayer/Start/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="HostJoinLabel" type="Label" parent="CanvasLayer"]
 offset_left = 937.0
 offset_top = 6.0
@@ -248,3 +404,4 @@ theme = ExtResource("1_4cnto")
 [connection signal="pressed" from="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer/HostEdit/HostButton" to="." method="_on_host_pressed"]
 [connection signal="text_changed" from="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer/JoinEdit" to="." method="_on_ip_text_changed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer/JoinEdit/JoinButton" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/StartButton" to="CanvasLayer/Start" method="_on_start_button_pressed"]
