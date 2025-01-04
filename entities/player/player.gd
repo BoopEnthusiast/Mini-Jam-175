@@ -156,7 +156,6 @@ func faceDirection() -> void:
 		sprite.flip_h = true
 	elif direction > 0:
 		sprite.flip_h = false
-		
 
 
 func _on_i_frames_timeout() -> void:
