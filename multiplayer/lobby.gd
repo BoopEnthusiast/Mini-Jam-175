@@ -11,9 +11,9 @@ var port = 6969
 var saved_ip: String = "localhost"
 var external_ip: String = ""
 
-@onready var lobby_container: HBoxContainer = $CanvasLayer/Lobby/LobbyContainer
 @onready var host_join_label: Label = $CanvasLayer/HostJoinLabel
 @onready var ip_enter: TextEdit = $CanvasLayer/Lobby/LobbyContainer/VBoxContainer2/IPEnter
+@onready var lobby: Control = $CanvasLayer/Lobby
 
 
 func _ready() -> void: 
@@ -26,7 +26,7 @@ func _on_host_pressed() -> void:
 	print("Hosting now")
 	host_join_label.text = "Host"
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
-	lobby_container.visible = false
+	lobby.visible = false
 
 
 func _on_join_pressed() -> void:
@@ -35,7 +35,7 @@ func _on_join_pressed() -> void:
 	print("Joining server")
 	host_join_label.text = "Client"
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
-	lobby_container.visible = false
+	lobby.visible = false
 
 
 func _player_connected(id: int) -> void:
@@ -64,7 +64,7 @@ func set_node_authority() -> void:
 func _on_singleplayer_pressed() -> void:
 	MultiplayerSingleton.is_singleplayer = true
 	setup_world()
-	lobby_container.visible = false
+	lobby.visible = false
 
 
 func _on_ip_text_changed() -> void:

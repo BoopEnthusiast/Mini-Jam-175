@@ -142,7 +142,7 @@ vertical_alignment = 1
 [node name="HostEdit" type="LineEdit" parent="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_5m3vp")
-placeholder_text = "IP:Port"
+placeholder_text = "IP"
 
 [node name="HostButton" type="Button" parent="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer/HostEdit"]
 layout_mode = 1
@@ -181,7 +181,7 @@ vertical_alignment = 1
 [node name="JoinEdit" type="LineEdit" parent="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_5m3vp")
-placeholder_text = "IP:Port"
+placeholder_text = "Port"
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/Lobby/MarginContainer/VBoxContainer/MultiplayerContainer/VBoxContainer/JoinEdit"]
 layout_mode = 1
@@ -243,3 +243,4 @@ theme = ExtResource("1_4cnto")
 [connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/MarginContainer/VBoxContainer/SingleplayerContainer/SingleplayerButton" to="." method="_on_singleplayer_pressed"]
