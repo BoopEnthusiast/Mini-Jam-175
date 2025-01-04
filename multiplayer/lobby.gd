@@ -69,7 +69,6 @@ func _player_connected(id: int) -> void:
 		MultiplayerSingleton.player_2_id = id
 	else:
 		MultiplayerSingleton.player_1_id = id
-	print("Setting up world")
 	setup_world()
 	call_deferred("set_node_authority")
 

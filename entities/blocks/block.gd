@@ -69,5 +69,4 @@ func handle_collision(contact_index: int, state: PhysicsDirectBodyState2D):
 	# Destroy after short delay for player to see the hit.
 	get_tree().create_timer(0.05).timeout.connect(queue_free)
 
-	if Singleton.camera != null:
-		Singleton.camera.add_trauma(1.0)
+	

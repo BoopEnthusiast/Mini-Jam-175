@@ -24,12 +24,22 @@ var has_pressed_jump := false
 var has_wall_jumped := false
 
 var hearts_list : Array[TextureRect]
-var health := 3
+var health := 3:
+	set(value):
+		if value > 0:
+			health = value
+			update_heart_display()
+			if Singleton.camera != null:
+				Singleton.camera.add_trauma(1.0)
+		else:
+			pass # TODO: Start end screen
+
 var direction := 0
 
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var hearts: HBoxContainer = $HealthLayer/Hearts
 
 
 func _enter_tree() -> void:
@@ -40,21 +50,14 @@ func _ready() -> void:
 	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
 	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
 	
-	# Display hearts 
-	var hearts_parent = $health_bar/HBoxContainer
-	for child in hearts_parent.get_children():
+	# Get displayed hearts
+	for child in hearts.get_children():
 		hearts_list.append(child)
-		print(hearts_list)
-		
-func take_damage():
-	if health > 0:
-		health -= 1
-		$damage.play("damaged")
-		update_heart_display()
+
 
 func update_heart_display():
 	for i in range(hearts_list.size()):
-		hearts_list[i].visible = 1 < health
+		hearts_list[i].visible = i < health
 
 
 func _physics_process(delta: float) -> void:

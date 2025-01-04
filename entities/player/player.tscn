@@ -230,23 +230,23 @@ position = Vector2(0, 20)
 texture = SubResource("GradientTexture2D_5mgjg")
 script = SubResource("GDScript_5u6kl")
 
-[node name="health_bar" type="CanvasLayer" parent="."]
+[node name="HealthLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
+[node name="Hearts" type="HBoxContainer" parent="HealthLayer"]
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="heart" type="TextureRect" parent="health_bar/HBoxContainer"]
+[node name="Heart1" type="TextureRect" parent="HealthLayer/Hearts"]
 custom_minimum_size = Vector2(1.005, 0)
 layout_mode = 2
 texture = ExtResource("3_rgi6r")
 
-[node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
+[node name="Heart2" type="TextureRect" parent="HealthLayer/Hearts"]
 custom_minimum_size = Vector2(1.005, 0)
 layout_mode = 2
 texture = ExtResource("3_rgi6r")
 
-[node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
+[node name="Heart3" type="TextureRect" parent="HealthLayer/Hearts"]
 custom_minimum_size = Vector2(1.005, 0)
 layout_mode = 2
 texture = ExtResource("3_rgi6r")
