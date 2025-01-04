@@ -354,9 +354,9 @@ theme_override_fonts/bold_font = ExtResource("3_b7w7t")
 bbcode_enabled = true
 text = "[center][font_size=36][b]A,D / Joystick Left: [/b] Move
 [b]W / Space / [img]ui/icons/Xbox_A.png[/img] / [img]ui/icons/PS_Cross.png[/img] : [/b] Jump
+[b]Left Shift / [img]ui/icons/Xbox_X.png[/img] / [img]ui/icons/PS_Square.png[/img] : [/b] Dash
 [b]Jump in Air : [/b] Double jump
-[b]Jump on Wall : [/b] Wall jump
-[/font_size][/center]"
+[b]Jump on Wall : [/b] Wall jump[/font_size][/center]"
 fit_content = true
 
 [node name="StartButton" type="Button" parent="CanvasLayer/Start/GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer"]
