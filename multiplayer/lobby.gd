@@ -14,7 +14,6 @@ var external_ip: String = ""
 @onready var lobby_container: HBoxContainer = $CanvasLayer/Lobby/LobbyContainer
 @onready var host_join_label: Label = $CanvasLayer/HostJoinLabel
 @onready var ip_enter: TextEdit = $CanvasLayer/Lobby/LobbyContainer/VBoxContainer2/IPEnter
-@onready var copy_ip: Button = $CanvasLayer/Lobby/CopyIP
 
 
 func _ready() -> void: 
@@ -28,7 +27,6 @@ func _on_host_pressed() -> void:
 	host_join_label.text = "Host"
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
 	lobby_container.visible = false
-	copy_ip.visible = true
 	# Internet setup
 	var upnp = UPNP.new()
 	var discover_result = upnp.discover()
