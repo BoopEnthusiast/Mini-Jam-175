@@ -23,6 +23,7 @@ var has_double_jumped := false
 var has_pressed_jump := false
 var has_wall_jumped := false
 
+var hearts_list : Array[TextureRect]
 var health := 3
 var direction := 0
 
@@ -38,6 +39,22 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	print("Player authority?: ",multiplayer.get_unique_id(),"   ",is_multiplayer_authority())
 	print("Is singleplayer: ",MultiplayerSingleton.is_singleplayer)
+	
+	# Display hearts 
+	var hearts_parent = $health_bar/HBoxContainer
+	for child in hearts_parent.get_children():
+		hearts_list.append(child)
+		print(hearts_list)
+		
+func take_damage():
+	if health > 0:
+		health -= 1
+		$damage.play("damaged")
+		update_heart_display()
+
+func update_heart_display():
+	for i in range(hearts_list.size()):
+		hearts_list[i].visible = 1 < health
 
 
 func _physics_process(delta: float) -> void:
