@@ -3,9 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://22sn1timlt55" path="res://ui/start/start_player_guide.tscn" id="1_fc00t"]
 
 [node name="Start" instance=ExtResource("1_fc00t")]
-
-[node name="BlockDropper" parent="GridContainer/CenterColumn/MarginContainer" index="0"]
-visible = true
-
-[node name="Player" parent="GridContainer/CenterColumn/MarginContainer" index="1"]
-visible = false

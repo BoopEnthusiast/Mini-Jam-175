@@ -1,8 +1,7 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://48jchftjojj3"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://48jchftjojj3"]
 
 [ext_resource type="FontVariation" uid="uid://cgec6gc2bw2pr" path="res://ui/fonts/Nunito_700.tres" id="1_jlk55"]
 [ext_resource type="Texture2D" uid="uid://d1sw205dkaaxj" path="res://ui/icons/button_disabled.png" id="2_bx5ma"]
-[ext_resource type="Texture2D" uid="uid://dn2riak3kt28l" path="res://ui/icons/button_focus.png" id="3_1miqb"]
 [ext_resource type="Texture2D" uid="uid://b0k8johd2bq3p" path="res://ui/icons/button_hover.png" id="3_hi5xu"]
 [ext_resource type="Texture2D" uid="uid://byloigddcmadn" path="res://ui/icons/button_normal.png" id="4_3ugsq"]
 [ext_resource type="Texture2D" uid="uid://3m650rjg7jda" path="res://ui/icons/button_press.png" id="5_8gps3"]
@@ -14,12 +13,21 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fnix"]
-texture = ExtResource("3_1miqb")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 32.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai5fc"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.980392)
+corner_radius_top_left = 512
+corner_radius_top_right = 512
+corner_radius_bottom_right = 512
+corner_radius_bottom_left = 512
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijwma"]
 texture = ExtResource("3_hi5xu")
@@ -63,7 +71,7 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_jlk55")
 Button/styles/disabled = SubResource("StyleBoxTexture_4uddg")
-Button/styles/focus = SubResource("StyleBoxTexture_7fnix")
+Button/styles/focus = SubResource("StyleBoxFlat_ai5fc")
 Button/styles/hover = SubResource("StyleBoxTexture_ijwma")
 Button/styles/normal = SubResource("StyleBoxTexture_857bg")
 Button/styles/pressed = SubResource("StyleBoxTexture_vdrla")
