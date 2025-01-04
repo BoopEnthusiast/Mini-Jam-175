@@ -46,4 +46,7 @@ position = Vector2(0, -639)
 scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_xvnle")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

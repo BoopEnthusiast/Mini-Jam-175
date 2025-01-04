@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		position.x = clamp(position.x + direction * SPEED * delta, -370, 370)
 		if can_spawn_block:
 			rpc("spawn_block")
+			can_spawn_block = false
 
 
 func automatic_spawner(delta: float):
@@ -56,19 +57,34 @@ func spawn_block():
 	if not can_spawn_block:
 		return
 	
-	spawn_timer.start()
-	can_spawn_block = false
+	if MultiplayerSingleton.is_singleplayer:
+		can_spawn_block = false
+		
+		var block_index := randi_range(0, BLOCKS.size() - 1)
+		var new_block = BLOCKS[block_index].instantiate()
+		
+		new_block.global_position = global_position
+		
+		# Give block a random cardinal rotation
+		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
+		new_block.global_rotation = block_rotation
+		
+		Singleton.main_node.add_child(new_block)
 	
-	var block_index := randi_range(0, BLOCKS.size() - 1)
-	var new_block = BLOCKS[block_index].instantiate()
-	
-	new_block.global_position = global_position
-	
-	# Give block a random cardinal rotation
-	var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
-	new_block.global_rotation = block_rotation
-	
-	Singleton.main_node.add_child(new_block)
+	else:
+		var block_index := randi_range(0, BLOCKS.size() - 1)
+		
+		var block_global_position = global_position
+		
+		# Give block a random cardinal rotation
+		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
+		
+		var spawn_info = {
+			"block_index": block_index,
+			"global_position": block_global_position,
+			"global_rotation": block_rotation,
+		}
+		Singleton.main_node.multiplayer_spawner.spawn(spawn_info)
 
 
 func _on_spawn_timer_timeout():
