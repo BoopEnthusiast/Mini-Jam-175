@@ -27,29 +27,6 @@ func _on_host_pressed() -> void:
 	host_join_label.text = "Host"
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
 	lobby_container.visible = false
-	# Internet setup
-	var upnp = UPNP.new()
-	var discover_result = upnp.discover()
-	print("Discover result:")
-	print(discover_result == UPNP.UPNP_RESULT_SUCCESS)
-	if discover_result == UPNP.UPNP_RESULT_SUCCESS:
-		print("Gateway:")
-		print(upnp.get_gateway())
-		print("Device:")
-		print(upnp.get_device(0))
-		if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
-			var map_result_udp = upnp.add_port_mapping(port, 0, "godot_udp", "UDP")
-			var map_result_tcp = upnp.add_port_mapping(port, 0, "godot_tcp", "TCP")
-			
-			if not map_result_udp == UPNP.UPNP_RESULT_SUCCESS:
-				upnp.add_port_mapping(port, 0, "", "UDP")
-			if not map_result_tcp == UPNP.UPNP_RESULT_SUCCESS:
-				upnp.add_port_mapping(port, 0, "", "TCP")
-			
-			print(map_result_udp,"   ",map_result_tcp)
-	print("External IP:")
-	print(upnp.query_external_address())
-	external_ip = upnp.query_external_address()
 
 
 func _on_join_pressed() -> void:
@@ -92,8 +69,3 @@ func _on_singleplayer_pressed() -> void:
 
 func _on_ip_text_changed() -> void:
 	saved_ip = ip_enter.text.strip_edges()
-
-
-func _on_copy_ip_pressed() -> void:
-	DisplayServer.clipboard_set(external_ip)
-	print(external_ip)
