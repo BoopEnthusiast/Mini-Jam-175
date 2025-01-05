@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=34 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
 [ext_resource type="Texture2D" uid="uid://cpmanm5be6exi" path="res://entities/player/spr_player_dash.png" id="2_lfacv"]
@@ -29,6 +29,9 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath(".:health")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath("DashProgress:value")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4xmh"]
 atlas = ExtResource("2_lfacv")
@@ -222,6 +225,19 @@ _data = {
 "i_frames": SubResource("Animation_bixwa")
 }
 
+[sub_resource type="GDScript" id="GDScript_kxd5w"]
+script/source = "extends ProgressBar
+
+
+@onready var dash_recharge_timer: Timer = $\"../DashRechargeTimer\"
+@onready var dash_duration_timer: Timer = $\"../DashDurationTimer\"
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	value = dash_recharge_timer.wait_time - dash_recharge_timer.time_left
+"
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 floor_max_angle = 1.22173
@@ -296,6 +312,22 @@ one_shot = true
 process_callback = 0
 wait_time = 0.5
 one_shot = true
+
+[node name="DashProgress" type="ProgressBar" parent="."]
+clip_children = 1
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = -30.0
+max_value = 3.0
+step = 0.005
+script = SubResource("GDScript_kxd5w")
+
+[node name="Gradient" type="Sprite2D" parent="DashProgress"]
+position = Vector2(50, 15)
+scale = Vector2(1.71875, 0.59375)
+texture = SubResource("GradientTexture2D_5mgjg")
+script = ExtResource("8_7y07n")
 
 [connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]
 [connection signal="timeout" from="DashRechargeTimer" to="." method="_on_dash_recharge_timeout"]
