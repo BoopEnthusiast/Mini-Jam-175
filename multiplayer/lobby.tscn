@@ -388,13 +388,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HostJoinLabel" type="Label" parent="CanvasLayer"]
-offset_left = 937.0
-offset_top = 6.0
-offset_right = 977.0
-offset_bottom = 29.0
-theme = ExtResource("1_4cnto")
-
 [connection signal="text_changed" from="CanvasLayer/Lobby/LobbyContainer/VBoxContainer2/IPEnter" to="." method="_on_ip_text_changed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/LobbyContainer/ButtonContainer/Join" to="." method="_on_join_pressed"]

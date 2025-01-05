@@ -1,5 +1,8 @@
 class_name Start
-extends Node
+extends PanelContainer
+
+
+@onready var root: Node2D = $"../.."
 
 @onready var dropper_title := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/DropperTitle
 @onready var dropper_controls := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control/DropperControls
@@ -8,6 +11,8 @@ extends Node
 @onready var player_title := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/PlayerTitle
 @onready var player_controls := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Control/PlayerControls
 @onready var player_objective := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective/PlayerObjective
+
+var is_multiplayer = false
 
 var show_dopper_guide := false:
 	set = set_show_dropper_guide
@@ -35,4 +40,7 @@ func set_show_dropper_guide(value: bool):
 
 
 func _on_start_button_pressed() -> void:
-	pass # Replace with function body.
+	root.setup_world()
+	if is_multiplayer:
+		root.call_deferred("set_node_authority")
+	visible = false
