@@ -31,4 +31,3 @@ func spawn_function(spawn_info):
 
 func _process(delta: float) -> void:
 	Singleton.time += delta
-	print(Singleton.time)

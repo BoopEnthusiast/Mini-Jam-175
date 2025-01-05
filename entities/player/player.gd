@@ -46,12 +46,10 @@ var direction := 0.0
 # Health is dependent on the nodes, so is below them
 @export var health := 3:
 	set(value):
-		print(can_take_damage)
 		if can_take_damage:
 			health = value
 			update_heart_display()
 			can_take_damage = false
-			print(i_frames)
 			i_frames.start()
 			i_frame_player.play("i_frames")
 			if Singleton.camera != null:
@@ -142,6 +140,7 @@ func _physics_process(delta: float) -> void:
 			if body is Block:
 				var block: Block = body
 				block.queue_free()
+				Singleton.blocks_destroyed += 1
 	
 	checkState.call()
 
@@ -192,7 +191,6 @@ func setStateWallslide() -> void:
 func setStateDashing() -> void:
 	sprite.play("dash")
 	
-	print("AAAAAAHHHH")
 	checkState = func():
 		if not is_dashing:
 			setStateAirborne()
@@ -206,13 +204,11 @@ func faceDirection() -> void:
 
 
 func _on_i_frames_timeout() -> void:
-	print("I frames over")
 	can_take_damage = true
 	i_frame_player.stop()
 
 
 func _on_dash_duration_timeout() -> void:
-	print("Dash ended")
 	is_dashing = false
 	dash_recharge_timer.start()
 
