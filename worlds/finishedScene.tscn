@@ -183,6 +183,7 @@ custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer"]
+texture_filter = 1
 position = Vector2(240, 303)
 scale = Vector2(7.19531, 6.21875)
 sprite_frames = SubResource("SpriteFrames_mvrwu")

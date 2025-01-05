@@ -229,6 +229,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="PlayerTexture" type="TextureRect" parent="CanvasLayer/Lobby/MarginContainer/PlayerTextureControl"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 504.0
 offset_top = 82.0
