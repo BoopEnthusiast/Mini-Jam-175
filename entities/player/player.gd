@@ -18,6 +18,8 @@ const SPEED = 300.0
 const ACCEL = 70.0
 const JUMP_VELOCITY = -400.0
 
+const SPAWNER_WON = preload("res://worlds/SpawnerWon.tscn")
+
 var was_on_floor := false
 var has_double_jumped := false
 var has_pressed_jump := false
@@ -55,7 +57,7 @@ var direction := 0.0
 			if Singleton.camera != null:
 				Singleton.camera.add_trauma(1.0)
 		if health <= 0:
-			get_tree().change_scene_to_file("res://worlds/SpawnerWon.tscn")
+			call_deferred("finish_game")
 
 
 func _enter_tree() -> void:
@@ -143,6 +145,7 @@ func _physics_process(delta: float) -> void:
 	
 	checkState.call()
 
+
 func setStateAirborne() -> void:
 	checkState = func():
 		faceDirection()
@@ -157,6 +160,7 @@ func setStateAirborne() -> void:
 		elif is_on_wall_only():
 			setStateWallslide()
 
+
 func setStateGrounded() -> void:
 	checkState = func():
 		faceDirection()
@@ -168,6 +172,7 @@ func setStateGrounded() -> void:
 		
 		if not is_on_floor():
 			setStateAirborne()
+
 
 func setStateWallslide() -> void:
 	if get_wall_normal().x > 0:
@@ -182,7 +187,8 @@ func setStateWallslide() -> void:
 			setStateGrounded()
 		elif not is_on_wall():
 			setStateAirborne()
-			
+
+
 func setStateDashing() -> void:
 	sprite.play("dash")
 	
@@ -190,6 +196,7 @@ func setStateDashing() -> void:
 	checkState = func():
 		if not is_dashing:
 			setStateAirborne()
+
 
 func faceDirection() -> void:
 	if direction < 0:
@@ -203,10 +210,16 @@ func _on_i_frames_timeout() -> void:
 	can_take_damage = true
 	i_frame_player.stop()
 
+
 func _on_dash_duration_timeout() -> void:
 	print("Dash ended")
 	is_dashing = false
 	dash_recharge_timer.start()
 
+
 func _on_dash_recharge_timeout() -> void:
 	can_dash = true
+
+
+func finish_game() -> void:
+	get_tree().change_scene_to_packed(SPAWNER_WON)
