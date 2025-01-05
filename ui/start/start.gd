@@ -13,6 +13,7 @@ extends PanelContainer
 @onready var player_objective := $GridContainer/CenterColumn/MarginContainer/ScrollContainer/VBoxContainer/Objective/PlayerObjective
 
 var is_multiplayer = false
+var other_player_connected = false
 
 var show_dopper_guide := false:
 	set = set_show_dropper_guide
@@ -42,5 +43,7 @@ func set_show_dropper_guide(value: bool):
 func _on_start_button_pressed() -> void:
 	root.setup_world()
 	if is_multiplayer:
+		while not other_player_connected:
+			pass
 		root.call_deferred("set_node_authority")
 	visible = false

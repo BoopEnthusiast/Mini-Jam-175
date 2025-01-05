@@ -14,7 +14,7 @@ func _ready() -> void:
 		process_mode = PROCESS_MODE_DISABLED
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var state := PhysicsServer2D.body_get_direct_state(get_rid())
 	var contact_count := state.get_contact_count()
 

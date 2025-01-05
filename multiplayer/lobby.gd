@@ -20,9 +20,9 @@ func _ready() -> void:
 
 
 func _on_host_pressed() -> void:
-	var err = multiplayer_peer.create_server(port, MAX_CLIENTS)
+	multiplayer_peer.create_server(port, MAX_CLIENTS)
 	multiplayer.multiplayer_peer = multiplayer_peer
-	print("Hosting now: " + str(err))
+	print("Hosting now: " + str(multiplayer.get_unique_id()))
 	MultiplayerSingleton.player_1_id = multiplayer.get_unique_id()
 	lobby.visible = false
 	start.is_multiplayer = true
@@ -31,9 +31,9 @@ func _on_host_pressed() -> void:
 
 
 func _on_join_pressed() -> void:
-	var err = multiplayer_peer.create_client(ip, port)
+	multiplayer_peer.create_client(ip, port)
 	multiplayer.multiplayer_peer = multiplayer_peer
-	print("Joining server: " + str(err))
+	print("Joining server: " + str(multiplayer.get_unique_id()))
 	MultiplayerSingleton.player_2_id = multiplayer.get_unique_id()
 	lobby.visible = false
 	start.is_multiplayer = true
@@ -42,7 +42,8 @@ func _on_join_pressed() -> void:
 
 
 func _player_connected(id: int) -> void:
-	print("player connected")
+	start.other_player_connected = true
+	print("player connected" + str(multiplayer.get_unique_id()))
 	MultiplayerSingleton.is_singleplayer = false
 	if multiplayer.is_server():
 		MultiplayerSingleton.player_2_id = id
