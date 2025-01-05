@@ -179,11 +179,11 @@ text = "Slime won!
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer"]
-position = Vector2(239, 102)
+position = Vector2(240, 303)
 scale = Vector2(7.19531, 6.21875)
 sprite_frames = SubResource("SpriteFrames_mvrwu")
 autoplay = "default"

@@ -8,9 +8,6 @@
 text = "Spawner won!
 "
 
-[node name="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer" index="1"]
-custom_minimum_size = Vector2(500, 500)
-
 [node name="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer" index="0"]
 position = Vector2(232, 252)
 animation = &"spawner"
