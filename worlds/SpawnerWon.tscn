@@ -4,9 +4,6 @@
 
 [node name="Control" instance=ExtResource("1_3madv")]
 
-[node name="VBoxContainer" parent="GridContainer/MarginContainer" index="0"]
-size_flags_vertical = 0
-
 [node name="Label" parent="GridContainer/MarginContainer/VBoxContainer/labelContainer" index="0"]
 text = "Spawner won!
 "
