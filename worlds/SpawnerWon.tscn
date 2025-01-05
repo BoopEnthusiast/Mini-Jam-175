@@ -9,4 +9,6 @@ text = "Spawner won!
 "
 
 [node name="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer" index="0"]
-position = Vector2(241, 102)
+position = Vector2(232, 252)
+animation = &"spawner"
+autoplay = "spawner"

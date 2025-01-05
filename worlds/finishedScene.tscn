@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dn6jgulxwgtb6"]
+[gd_scene load_steps=23 format=3 uid="uid://dn6jgulxwgtb6"]
 
 [ext_resource type="Theme" uid="uid://48jchftjojj3" path="res://ui/start_button.tres" id="1_t8mc3"]
 [ext_resource type="Script" path="res://worlds/finished_scene.gd" id="1_y6fb5"]
 [ext_resource type="Texture2D" uid="uid://didn7tr02mvla" path="res://entities/player/spr_player_land-Sheet.png" id="2_a3blm"]
+[ext_resource type="Texture2D" uid="uid://cllfjxemucbte" path="res://entities/spawner/spr_spawner_click-Sheet.png" id="4_1c136"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7psyl"]
 atlas = ExtResource("2_a3blm")
@@ -36,6 +37,42 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("2_a3blm")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aeuh"]
+atlas = ExtResource("4_1c136")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6syv"]
+atlas = ExtResource("4_1c136")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjlem"]
+atlas = ExtResource("4_1c136")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlkre"]
+atlas = ExtResource("4_1c136")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgkeu"]
+atlas = ExtResource("4_1c136")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb7wk"]
+atlas = ExtResource("4_1c136")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j81ny"]
+atlas = ExtResource("4_1c136")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmxu3"]
+atlas = ExtResource("4_1c136")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l8hm"]
+atlas = ExtResource("4_1c136")
+region = Rect2(1024, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mvrwu"]
 animations = [{
 "frames": [{
@@ -65,6 +102,38 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aeuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6syv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjlem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlkre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgkeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb7wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j81ny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmxu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l8hm")
+}],
+"loop": true,
+"name": &"spawner",
 "speed": 20.0
 }]
 
@@ -110,11 +179,11 @@ text = "Slime won!
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/MarginContainer/VBoxContainer/MarginContainer"]
-position = Vector2(239, 102)
+position = Vector2(240, 303)
 scale = Vector2(7.19531, 6.21875)
 sprite_frames = SubResource("SpriteFrames_mvrwu")
 autoplay = "default"

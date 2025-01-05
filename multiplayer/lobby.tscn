@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://multiplayer/lobby.gd" id="1_7m7tk"]
 [ext_resource type="FontVariation" uid="uid://cgec6gc2bw2pr" path="res://ui/fonts/Nunito_700.tres" id="3_b7w7t"]
 [ext_resource type="Theme" uid="uid://48jchftjojj3" path="res://ui/start_button.tres" id="4_vc1ju"]
-[ext_resource type="Theme" uid="uid://c1p5btbr58bq6" path="res://ui/line_edit.tres" id="5_5m3vp"]
+[ext_resource type="Theme" uid="uid://cwq2vvswqra4m" path="res://ui/line_edit.tres" id="5_5m3vp"]
 [ext_resource type="Texture2D" uid="uid://d3hudqjfnrky8" path="res://entities/player/spr_player_rise.png" id="6_ug4tc"]
 [ext_resource type="Script" path="res://ui/start/start.gd" id="7_n5de2"]
 [ext_resource type="FontVariation" uid="uid://bacvn7mvepoc2" path="res://ui/fonts/Nunito_500.tres" id="8_2tfuj"]
