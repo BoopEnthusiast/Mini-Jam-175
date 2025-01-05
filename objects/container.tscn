@@ -38,6 +38,12 @@ metadata/_snap_count = 3
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usrnt"]
 atlas = ExtResource("2_4uqty")
@@ -109,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iecti")
 }],
-"loop": true,
+"loop": false,
 "name": &"click",
 "speed": 20.0
 }, {
@@ -119,7 +125,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="Container" type="StaticBody2D"]
@@ -157,6 +163,7 @@ visibility_update_mode = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Spawner"]
 position = Vector2(2, 23)
 sprite_frames = SubResource("SpriteFrames_0sucl")
+autoplay = "default"
 
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="Spawner/AnimatedSprite2D" to="Spawner" method="_on_animated_sprite_2d_animation_finished"]

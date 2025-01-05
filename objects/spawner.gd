@@ -49,15 +49,17 @@ func spawn_block():
 	if not can_spawn_block:
 		return
 	
-	animated_sprite_2d.play("click")
 	
 	if MultiplayerSingleton.is_singleplayer:
 		can_spawn_block = false
+		
+		animated_sprite_2d.play("click")
 		
 		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
 		var new_block = Singleton.main_node.BLOCKS[block_index].instantiate()
 		
 		new_block.global_position = global_position
+		new_block.global_position.y -= 100
 		
 		# Give block a random cardinal rotation
 		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
@@ -66,9 +68,12 @@ func spawn_block():
 		Singleton.main_node.add_child(new_block)
 	
 	else:
+		animated_sprite_2d.play("click")
+		
 		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
 		
 		var block_global_position = global_position
+		block_global_position.y -= 100
 		
 		# Give block a random cardinal rotation
 		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
