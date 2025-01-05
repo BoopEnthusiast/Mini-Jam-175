@@ -9,6 +9,9 @@ const SPEED = 100.0
 
 var can_spawn_block := false
 
+@onready var next_block_index: int = randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
+var next_rotation = (randi_range(0, 3) / 4.0) * 2.0 * PI
+
 
 func _enter_tree() -> void:
 	MultiplayerSingleton.spawner_node = self
@@ -55,14 +58,17 @@ func spawn_block():
 		
 		animated_sprite_2d.play("click")
 		
-		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
+		var block_index := next_block_index
+		next_block_index = randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
+		display_next_block()
 		var new_block = Singleton.main_node.BLOCKS[block_index].instantiate()
 		
 		new_block.global_position = global_position
 		new_block.global_position.y -= 100
 		
 		# Give block a random cardinal rotation
-		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
+		var block_rotation = next_rotation
+		next_rotation = (randi_range(0, 3) / 4.0) * 2.0 * PI
 		new_block.global_rotation = block_rotation
 		
 		Singleton.main_node.add_child(new_block)
@@ -70,13 +76,15 @@ func spawn_block():
 	else:
 		animated_sprite_2d.play("click")
 		
-		var block_index := randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
+		var block_index := next_block_index
+		next_block_index = randi_range(0, Singleton.main_node.BLOCKS.size() - 1)
 		
-		var block_global_position = global_position
+		var block_global_position := global_position
 		block_global_position.y -= 100
 		
 		# Give block a random cardinal rotation
-		var block_rotation := (randi_range(0, 3) / 4.0) * 2.0 * PI
+		var block_rotation = next_rotation
+		next_rotation = (randi_range(0, 3) / 4.0) * 2.0 * PI
 		
 		var spawn_info = {
 			"block_index": block_index,
@@ -84,6 +92,21 @@ func spawn_block():
 			"global_rotation": block_rotation,
 		}
 		Singleton.main_node.multiplayer_spawner.spawn(spawn_info)
+
+
+func display_next_block() -> void:
+	var new_block: Block = Singleton.main_node.BLOCKS[next_block_index].instantiate()
+	new_block.process_mode = Node.PROCESS_MODE_DISABLED
+	new_block.global_position = Vector2(700, -300)
+	new_block.global_rotation = next_rotation
+	new_block.name = "DisplayBlock"
+	Singleton.main_node.add_child(new_block)
+	delete_block(new_block)
+
+
+func delete_block(block_to_delete: Block) -> void:
+	await get_tree().create_timer(2).timeout
+	block_to_delete.queue_free()
 
 
 func _on_spawn_timer_timeout():

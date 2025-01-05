@@ -25,4 +25,5 @@ func spawn_function(spawn_info):
 	var new_block = BLOCKS[spawn_info["block_index"]].instantiate()
 	new_block.global_position = spawn_info["global_position"]
 	new_block.global_rotation = spawn_info["global_rotation"]
+	MultiplayerSingleton.spawner_node.display_next_block()
 	return new_block
