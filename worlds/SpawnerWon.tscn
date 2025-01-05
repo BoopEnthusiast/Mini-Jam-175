@@ -4,6 +4,9 @@
 
 [node name="Control" instance=ExtResource("1_3madv")]
 
+[node name="VBoxContainer" parent="GridContainer/MarginContainer" index="0"]
+size_flags_vertical = 0
+
 [node name="Label" parent="GridContainer/MarginContainer/VBoxContainer/labelContainer" index="0"]
 text = "Spawner won!
 "
@@ -12,3 +15,6 @@ text = "Spawner won!
 position = Vector2(232, 252)
 animation = &"spawner"
 autoplay = "spawner"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="ready" from="." to="." method="_on_ready"]

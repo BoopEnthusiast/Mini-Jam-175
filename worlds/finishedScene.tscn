@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dn6jgulxwgtb6"]
+[gd_scene load_steps=24 format=3 uid="uid://dn6jgulxwgtb6"]
 
 [ext_resource type="Theme" uid="uid://48jchftjojj3" path="res://ui/start_button.tres" id="1_t8mc3"]
 [ext_resource type="Script" path="res://worlds/finished_scene.gd" id="1_y6fb5"]
 [ext_resource type="Texture2D" uid="uid://didn7tr02mvla" path="res://entities/player/spr_player_land-Sheet.png" id="2_a3blm"]
 [ext_resource type="Texture2D" uid="uid://cllfjxemucbte" path="res://entities/spawner/spr_spawner_click-Sheet.png" id="4_1c136"]
+[ext_resource type="LabelSettings" uid="uid://d1p68st5iv38j" path="res://worlds/postFinInfo.tres" id="5_5ucqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7psyl"]
 atlas = ExtResource("2_a3blm")
@@ -165,7 +166,8 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
+alignment = 1
 
 [node name="labelContainer" type="MarginContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -173,7 +175,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/labelContainer"]
 layout_mode = 2
 theme = ExtResource("1_t8mc3")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 70
 text = "Slime won!
 "
 horizontal_alignment = 1
@@ -216,5 +218,31 @@ text = "Quit Game
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="TotalTime" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Something else: xx
+"
+label_settings = ExtResource("5_5ucqq")
+horizontal_alignment = 1
+
+[node name="BlocksSpawned" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Blocks Spawned: "
+label_settings = ExtResource("5_5ucqq")
+horizontal_alignment = 1
+
+[node name="BlocksDestroyed" type="Label" parent="GridContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Blocks Destroyed: xx
+"
+label_settings = ExtResource("5_5ucqq")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="GridContainer/MarginContainer/VBoxContainer/QuitContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,7 +1,6 @@
 class_name MainNode
 extends Node2D
 
-
 const BLOCKS = [
 	preload("res://entities/blocks/block_l.tscn"),
 	preload("res://entities/blocks/block_line.tscn"),
@@ -27,3 +26,9 @@ func spawn_function(spawn_info):
 	new_block.global_rotation = spawn_info["global_rotation"]
 	MultiplayerSingleton.spawner_node.display_next_block()
 	return new_block
+	
+
+
+func _process(delta: float) -> void:
+	Singleton.time += delta
+	print(Singleton.time)

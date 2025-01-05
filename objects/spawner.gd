@@ -52,6 +52,7 @@ func spawn_block():
 	if not can_spawn_block:
 		return
 	
+	Singleton.blocks_spawned += 1
 	
 	if MultiplayerSingleton.is_singleplayer:
 		can_spawn_block = false
