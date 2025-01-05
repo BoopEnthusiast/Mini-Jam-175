@@ -16,6 +16,7 @@ bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 script = ExtResource("1_7m7tk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Lobby" type="Control" parent="CanvasLayer"]
 layout_mode = 3
