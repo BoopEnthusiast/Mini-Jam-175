@@ -10,6 +10,8 @@ var multiplayer_peer = ENetMultiplayerPeer.new()
 var port = 6969
 var ip: String = "localhost"
 
+var world: Node2D
+
 @onready var ip_enter: TextEdit = $CanvasLayer/Lobby/LobbyContainer/VBoxContainer2/IPEnter
 @onready var lobby: Control = $CanvasLayer/Lobby
 @onready var start: Start = $CanvasLayer/Start
@@ -28,6 +30,7 @@ func _on_host_pressed() -> void:
 	start.is_multiplayer = true
 	start.set_show_dropper_guide(false)
 	start.visible = true
+	
 
 
 func _on_join_pressed() -> void:
@@ -49,12 +52,20 @@ func _player_connected(id: int) -> void:
 		MultiplayerSingleton.player_2_id = id
 	else:
 		MultiplayerSingleton.player_1_id = id
+	setup_world()
+	call_deferred("set_node_authority")
 
 
 # Called by the start menu
 func setup_world() -> void:
 	var new_main = MAIN.instantiate()
+	new_main.process_mode = Node.PROCESS_MODE_DISABLED
 	add_child(new_main)
+	world = new_main
+
+
+func unpause_world() -> void:
+	world.process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func set_node_authority() -> void:
@@ -67,6 +78,7 @@ func _on_singleplayer_pressed() -> void:
 	lobby.visible = false
 	start.set_show_dropper_guide(false)
 	start.visible = true
+	setup_world()
 
 
 func _on_ip_text_changed(new_text: String) -> void:
