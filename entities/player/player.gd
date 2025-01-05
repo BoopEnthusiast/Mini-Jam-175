@@ -39,7 +39,7 @@ var direction := 0.0
 @onready var coyote_time: Timer = $CoyoteTime
 @onready var jump_buffer: Timer = $JumpBuffer
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var hearts: HBoxContainer = $HealthLayer/Hearts
+@onready var hearts: VBoxContainer = $HealthLayer/Hearts
 @onready var i_frames: Timer = $IFrames
 @onready var i_frame_player: AnimationPlayer = $IFramePlayer
 

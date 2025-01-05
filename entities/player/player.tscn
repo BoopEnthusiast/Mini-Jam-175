@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ckb4ovkhr6os7"]
+[gd_scene load_steps=41 format=3 uid="uid://ckb4ovkhr6os7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_85tuv"]
 [ext_resource type="Texture2D" uid="uid://cpmanm5be6exi" path="res://entities/player/spr_player_dash.png" id="2_lfacv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://1p4080uly1fn" path="res://entities/player/spr_player_walk.png" id="6_qoqho"]
 [ext_resource type="Texture2D" uid="uid://bxpq044yuvbfx" path="res://entities/player/spr_player_wall.png" id="7_0i1ir"]
 [ext_resource type="Script" path="res://entities/player/player_gradient.gd" id="8_7y07n"]
+[ext_resource type="Texture2D" uid="uid://c20lxpbpqyo4t" path="res://entities/player/Heart.svg" id="10_wj5dq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf7d2"]
 size = Vector2(66.6667, 55.5556)
@@ -187,6 +188,39 @@ fill_to = Vector2(0.230972, 0.367244)
 metadata/_snap_enabled = true
 metadata/_snap_count = 3
 
+[sub_resource type="Gradient" id="Gradient_8ho2d"]
+colors = PackedColorArray(0.531992, 0.882819, 0.429498, 1, 0.403523, 0.851603, 0.943185, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kujux"]
+gradient = SubResource("Gradient_8ho2d")
+use_hdr = true
+fill_from = Vector2(0.769028, 0.632756)
+fill_to = Vector2(0.230972, 0.367244)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="Gradient" id="Gradient_41iq0"]
+colors = PackedColorArray(0.933083, 0.751217, 0.342984, 1, 0.979184, 0.686792, 0.731855, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o8mwn"]
+gradient = SubResource("Gradient_41iq0")
+use_hdr = true
+fill_from = Vector2(0.769028, 0.632756)
+fill_to = Vector2(0.230972, 0.367244)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="Gradient" id="Gradient_2qlms"]
+colors = PackedColorArray(0.755517, 0.753153, 0.977644, 1, 0.953674, 0.680774, 0.854237, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ei4u"]
+gradient = SubResource("Gradient_2qlms")
+use_hdr = true
+fill_from = Vector2(0.769028, 0.632756)
+fill_to = Vector2(0.230972, 0.367244)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
 [sub_resource type="Animation" id="Animation_86l8u"]
 length = 0.001
 tracks/0/type = "value"
@@ -280,24 +314,55 @@ script = ExtResource("8_7y07n")
 
 [node name="HealthLayer" type="CanvasLayer" parent="."]
 
-[node name="Hearts" type="HBoxContainer" parent="HealthLayer"]
-offset_right = 64.0
-offset_bottom = 64.0
+[node name="Hearts" type="VBoxContainer" parent="HealthLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = -454.0
+offset_right = 436.0
+offset_bottom = 454.0
+grow_vertical = 2
 
 [node name="Heart1" type="TextureRect" parent="HealthLayer/Hearts"]
-custom_minimum_size = Vector2(1.005, 0)
+clip_children = 1
+custom_minimum_size = Vector2(73.88, 300)
 layout_mode = 2
-texture = ExtResource("3_rgi6r")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("10_wj5dq")
+expand_mode = 2
+
+[node name="Gradient" type="Sprite2D" parent="HealthLayer/Hearts/Heart1"]
+position = Vector2(236, 229.5)
+scale = Vector2(8.375, 7.54688)
+texture = SubResource("GradientTexture2D_kujux")
 
 [node name="Heart2" type="TextureRect" parent="HealthLayer/Hearts"]
-custom_minimum_size = Vector2(1.005, 0)
+clip_children = 1
+custom_minimum_size = Vector2(1.005, 300)
 layout_mode = 2
-texture = ExtResource("3_rgi6r")
+size_flags_horizontal = 0
+texture = ExtResource("10_wj5dq")
+expand_mode = 2
+
+[node name="Gradient" type="Sprite2D" parent="HealthLayer/Hearts/Heart2"]
+position = Vector2(231.5, 226)
+scale = Vector2(8.23438, 7.4375)
+texture = SubResource("GradientTexture2D_o8mwn")
 
 [node name="Heart3" type="TextureRect" parent="HealthLayer/Hearts"]
-custom_minimum_size = Vector2(1.005, 0)
+clip_children = 1
+custom_minimum_size = Vector2(1.005, 300)
 layout_mode = 2
-texture = ExtResource("3_rgi6r")
+size_flags_horizontal = 0
+texture = ExtResource("10_wj5dq")
+expand_mode = 2
+
+[node name="Gradient" type="Sprite2D" parent="HealthLayer/Hearts/Heart3"]
+position = Vector2(234.5, 231)
+scale = Vector2(8.32812, 7.59375)
+texture = SubResource("GradientTexture2D_6ei4u")
 
 [node name="IFramePlayer" type="AnimationPlayer" parent="."]
 libraries = {
