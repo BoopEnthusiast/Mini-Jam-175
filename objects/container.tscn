@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwjahemx1p0f7"]
+[gd_scene load_steps=22 format=3 uid="uid://cwjahemx1p0f7"]
 
 [ext_resource type="Script" path="res://objects/spawner.gd" id="1_njwkd"]
+[ext_resource type="Texture2D" uid="uid://cllfjxemucbte" path="res://entities/spawner/spr_spawner_click-Sheet.png" id="2_4uqty"]
 [ext_resource type="Texture2D" uid="uid://di0upnelmlnwj" path="res://entities/spawner/spr_spawner_idle.png" id="2_appb6"]
 
 [sub_resource type="Gradient" id="Gradient_k0pck"]
@@ -33,12 +34,46 @@ fill_from = Vector2(0, 0.666667)
 metadata/_snap_enabled = true
 metadata/_snap_count = 3
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cdotj"]
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dx0u3"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usrnt"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc7ay"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yfgc"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kexa6"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnqun"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msvaj"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s6ho"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c4yo"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iecti"]
+atlas = ExtResource("2_4uqty")
+region = Rect2(1024, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k71c5"]
 atlas = ExtResource("2_appb6")
@@ -46,6 +81,38 @@ region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0sucl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usrnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc7ay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yfgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kexa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnqun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msvaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s6ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c4yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iecti")
+}],
+"loop": true,
+"name": &"click",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k71c5")
@@ -79,10 +146,6 @@ texture = SubResource("GradientTexture2D_w7l1g")
 position = Vector2(0, -521)
 script = ExtResource("1_njwkd")
 
-[node name="Sprite2D" type="Sprite2D" parent="Spawner"]
-scale = Vector2(48, 48)
-texture = SubResource("PlaceholderTexture2D_cdotj")
-
 [node name="Timer" type="Timer" parent="Spawner"]
 wait_time = 2.0
 autostart = true
@@ -96,3 +159,4 @@ position = Vector2(2, 23)
 sprite_frames = SubResource("SpriteFrames_0sucl")
 
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="animation_finished" from="Spawner/AnimatedSprite2D" to="Spawner" method="_on_animated_sprite_2d_animation_finished"]

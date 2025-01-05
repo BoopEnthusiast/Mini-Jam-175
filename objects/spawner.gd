@@ -3,6 +3,7 @@ extends Marker2D
 
 
 const SPEED = 100.0
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var spawn_timer: Timer = $Timer
 
@@ -48,6 +49,8 @@ func spawn_block():
 	if not can_spawn_block:
 		return
 	
+	animated_sprite_2d.play("click")
+	
 	if MultiplayerSingleton.is_singleplayer:
 		can_spawn_block = false
 		
@@ -80,3 +83,7 @@ func spawn_block():
 
 func _on_spawn_timer_timeout():
 	can_spawn_block = true
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animated_sprite_2d.play("default")
